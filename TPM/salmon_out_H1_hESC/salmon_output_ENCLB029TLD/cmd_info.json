@@ -1,0 +1,11 @@
+{
+    "salmon_version": "1.4.0",
+    "index": "/home/gaston/mun/CEBD_DMT3D/lab_proj_my_work/RPKM_RNA-seq/H1_hESC_fastq/salmon_default_hg38_index",
+    "libType": "A",
+    "mates1": "./ENCLB029TLD_trimmed_files/ENCLB029TLD_1.fastp_val_1.fq",
+    "mates2": "./ENCLB029TLD_trimmed_files/ENCLB029TLD_2.fastp_val_2.fq",
+    "threads": "16",
+    "validateMappings": [],
+    "output": "./salmon_output_ENCLB029TLD",
+    "auxDir": "aux_info"
+}

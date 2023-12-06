@@ -1,0 +1,22 @@
+{
+    "read_files": "[ ./ENCLB029TLD_trimmed_files/ENCLB029TLD_1.fastp_val_1.fq, ./ENCLB029TLD_trimmed_files/ENCLB029TLD_2.fastp_val_2.fq]",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 1.0,
+    "num_compatible_fragments": 35865541,
+    "num_assigned_fragments": 35865541,
+    "num_frags_with_concordant_consistent_mappings": 34550898,
+    "num_frags_with_inconsistent_or_orphan_mappings": 1681229,
+    "strand_mapping_bias": 0.5011125036460702,
+    "MSF": 0,
+    "OSF": 0,
+    "ISF": 17313887,
+    "MSR": 0,
+    "OSR": 0,
+    "ISR": 17237011,
+    "SF": 1063658,
+    "SR": 617571,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}
