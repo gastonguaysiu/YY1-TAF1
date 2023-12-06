@@ -1,0 +1,4454 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+<head>
+  <style type='text/css'>
+    body {
+        font-size: 100%;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    table td, table th
+    {
+       max-width: 150px;
+       word-wrap: break-word;
+    }
+  </style>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  <script src='https://code.jquery.com/jquery-3.2.1.min.js' ></script>
+  <script src='https://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+</head>
+<body>
+<div align='center'>
+  <h4>TFregulomeR - genomeAnnotate Result</h4>
+</div>
+<hr align='center' style='width: 80%'>
+<div align='center' style='width: 80%'>
+  <div id='donut-charts' align='center'></div>
+</div>
+<br>
+<div class='container' align='center'>
+  Table - genomic annotations of the peaks: <select id='change_go_term' onchange='changeTermTable(this.value)'>
+    <option value='promoter' selected>promoter</option>
+    <option value='TTS'>TTS</option>
+    <option value='exon'>exon</option>
+    <option value='5utr'>5 UTR</option>
+    <option value='3utr'>3 UTR</option>
+    <option value='intron'>intron</option>
+    <option value='intergenic'>intergenic</option>
+  </select>
+  <button type='button' class='btn btn-primary btn-sm' onclick="exportTableToCSV('genomeAnnotate_results.csv')">Export All To CSV File</button>
+  <div class='row' style='width:90%;height:400px;overflow:auto;'>
+    <div class='table-responsive'>
+      <table class='table table-bordred table-striped'>
+        <thead>
+          <th>chr</th>
+          <th>start</th>
+          <th>end</th>
+          <th>annotation</th>
+          <th>geneName</th>
+          <th>transcript</th>
+          <th>distanceToTSS</th>
+        </thead>
+        <tbody id='promoter' style='display:;'>
+          <tr>
+            <td>chr1</td>
+            <td>   778612</td>
+            <td>   778612</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000655765.1;ENST00000412115.2;ENST00000670700.1;ENST00000429505.6;ENST00000657896.1;ENST00000434264.6;ENST00000457084.1;ENST00000658648.1;ENST00000656571.1;ENST00000665867.1;ENST00000669749.1;ENST00000666217.1;ENST00000665719.1;ENST00000651411.1;ENST00000589899.5;ENST00000609830.1;ENST00000443772.2;ENST00000506640.3;ENST00000692781.2</td>
+            <td>134;134;145;147;147;157;169;183;189;196;196;199;199;236;317;324;359;50;75</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 35587229</td>
+            <td> 35587229</td>
+            <td>promoter-TSS</td>
+            <td>AP2B1</td>
+            <td>ENST00000621914.4;ENST00000621668.4;ENST00000616681.4;ENST00000620039.4;ENST00000590538.5;ENST00000591610.5;ENST00000612035.4;ENST00000610402.5;ENST00000614600.4;ENST00000590432.5;ENST00000612116.5;ENST00000618940.4;ENST00000588093.1;ENST00000592167.5;ENST00000593014.3</td>
+            <td>44;84;84;84;92;92;92;92;137;186;222;285;301;336;508</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 36535438</td>
+            <td> 36535438</td>
+            <td>promoter-TSS</td>
+            <td>PIGW</td>
+            <td>ENST00000620233.1;ENST00000614623.5;ENST00000610992.4;ENST00000621550.4;ENST00000610930.4;ENST00000621344.4;ENST00000620640.4;ENST00000616159.4;ENST00000616207.4;ENST00000613551.4;ENST00000620869.1</td>
+            <td>116;569;22;18;510;569;541;627;647;627;572</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 38748475</td>
+            <td> 38748475</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000610658.2;ENST00000620225.5;ENST00000616129.4;ENST00000618941.4;ENST00000618506.1</td>
+            <td>884;138;96;290;121</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 39952782</td>
+            <td> 39952782</td>
+            <td>promoter-TSS</td>
+            <td>GSDMA</td>
+            <td>ENST00000635792.1</td>
+            <td>480</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 93847608</td>
+            <td> 93847608</td>
+            <td>promoter-TSS</td>
+            <td>BCAR3</td>
+            <td>ENST00000370244.5;ENST00000649852.1</td>
+            <td>457;563</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 58219244</td>
+            <td> 58219244</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000654179.1;ENST00000670144.1;ENST00000678568.1;ENST00000313863.11;ENST00000393119.7;ENST00000675753.2;ENST00000676787.1;ENST00000677111.1;ENST00000677160.1;ENST00000677416.1;ENST00000677486.1;ENST00000677709.1;ENST00000678011.1;ENST00000678432.1;ENST00000678463.1;ENST00000678641.1;ENST00000393120.6;ENST00000580127.6;ENST00000585134.2;ENST00000581761.6;ENST00000677546.1;ENST00000678481.1;ENST00000677076.1;ENST00000677475.1;ENST00000678928.1;ENST00000679081.1;ENST00000678211.1;ENST00000578789.1;ENST00000677791.1;ENST00000581180.2</td>
+            <td>130;131;0;10;10;10;10;10;10;10;10;10;10;10;10;10;7;10;10;10;10;10;10;10;10;10;10;8;10;13</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 58352202</td>
+            <td> 58352202</td>
+            <td>promoter-TSS</td>
+            <td>SUPT4H1</td>
+            <td>ENST00000581166.5;ENST00000225504.8;ENST00000581540.5;ENST00000579289.1</td>
+            <td>34;0;540;65</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 64837161</td>
+            <td> 64837161</td>
+            <td>promoter-TSS</td>
+            <td>PLEKHM1P1</td>
+            <td>ENST00000578036.5;ENST00000582986.5;ENST00000701190.1;ENST00000692349.1;ENST00000580919.5;ENST00000691202.1;ENST00000397718.8;ENST00000584585.3;ENST00000687956.2;ENST00000688185.1</td>
+            <td>21;6;8;45;12;2;35;4;2;7</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 67366587</td>
+            <td> 67366587</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000356126.8;ENST00000357146.4;ENST00000584008.5;ENST00000584289.5;ENST00000581618.1;ENST00000579365.5;ENST00000578015.1</td>
+            <td>9;17;39;18;0;9;67</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 75154485</td>
+            <td> 75154485</td>
+            <td>promoter-TSS</td>
+            <td>JPT1</td>
+            <td>ENST00000476258.5;ENST00000409753.8;ENST00000470924.5;ENST00000481647.5;ENST00000581874.1;ENST00000465454.1</td>
+            <td>241;26;618;658;26;26</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 75405126</td>
+            <td> 75405126</td>
+            <td>promoter-TSS</td>
+            <td>MIR3678</td>
+            <td>ENST00000578455.1</td>
+            <td>942</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 79797035</td>
+            <td> 79797035</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000269385.9</td>
+            <td>41</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 81239064</td>
+            <td> 81239064</td>
+            <td>promoter-TSS</td>
+            <td>NDUFAF8</td>
+            <td>ENST00000577158.2;ENST00000573090.1;ENST00000431388.3;ENST00000576002.1;ENST00000575067.1;ENST00000573173.1;ENST00000573295.5;ENST00000637944.2;ENST00000300714.7;ENST00000576090.5;ENST00000570854.1;ENST00000572050.1;ENST00000575961.1;ENST00000575891.1;ENST00000571601.1</td>
+            <td>240;246;253;546;564;849;22;8;26;660;6;53;23;21;30</td>
+          </tr>
+
+          <tr>
+            <td>chr18</td>
+            <td>   268093</td>
+            <td>   268093</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000581677.2;ENST00000579232.5;ENST00000261600.11;ENST00000580038.5;ENST00000631280.2;ENST00000582313.5;ENST00000581269.5;ENST00000581116.1;ENST00000578224.5;ENST00000580870.5;ENST00000580544.1</td>
+            <td>19;73;45;70;73;65;42;47;73;73;73</td>
+          </tr>
+
+          <tr>
+            <td>chr18</td>
+            <td>  9614502</td>
+            <td>  9614502</td>
+            <td>promoter-TSS</td>
+            <td>PPP4R1-AS1</td>
+            <td>ENST00000582435.1;ENST00000400555.7;ENST00000400556.8;ENST00000285124.12;ENST00000578875.5;ENST00000578178.5;ENST00000583903.5;ENST00000579415.5;ENST00000581250.5;ENST00000580182.5;ENST00000581835.1;ENST00000583092.1;ENST00000577779.1;ENST00000580283.1;ENST00000577393.1</td>
+            <td>761;66;56;2;30;12;912;925;206;56;214;30;10;227;30</td>
+          </tr>
+
+          <tr>
+            <td>chr18</td>
+            <td> 36129935</td>
+            <td> 36129935</td>
+            <td>promoter-TSS</td>
+            <td>ELP2</td>
+            <td>ENST00000544267.5;ENST00000351393.10;ENST00000541190.5;ENST00000545632.5;ENST00000442325.6;ENST00000423854.6;ENST00000358232.11;ENST00000539560.5;ENST00000535488.5;ENST00000540135.5;ENST00000542430.5;ENST00000350494.10;ENST00000542824.5;ENST00000540799.1;ENST00000269187.10;ENST00000590986.5;ENST00000440549.6;ENST00000690777.1</td>
+            <td>54;43;40;39;36;35;35;33;32;31;17;14;10;9;594;553;549;594</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>100352513</td>
+            <td>100352513</td>
+            <td>promoter-TSS</td>
+            <td>CDC14A</td>
+            <td>ENST00000361544.11;ENST00000370124.8;ENST00000336454.5;ENST00000646583.1;ENST00000644813.1</td>
+            <td>45;10;6;3;435</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td>  3762699</td>
+            <td>  3762699</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000330133.5;ENST00000589174.1</td>
+            <td>16;5</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td>  5622770</td>
+            <td>  5622770</td>
+            <td>promoter-TSS</td>
+            <td>SAFB</td>
+            <td>ENST00000589863.5;ENST00000591666.5;ENST00000588852.2;ENST00000292123.9;ENST00000592224.5;ENST00000586934.5;ENST00000454510.5;ENST00000252542.9;ENST00000591120.1</td>
+            <td>264;312;312;328;347;350;368;5;5</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>103526039</td>
+            <td>103526039</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000662345.1;ENST00000668150.1;ENST00000447322.3;ENST00000444810.6</td>
+            <td>534;530;530;527</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 16829405</td>
+            <td> 16829405</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000248054.10;ENST00000596802.5;ENST00000379803.5</td>
+            <td>6;1;1</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 17933003</td>
+            <td> 17933003</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000445755.7;ENST00000602080.1</td>
+            <td>11;19</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 29606297</td>
+            <td> 29606297</td>
+            <td>promoter-TSS</td>
+            <td>POP4</td>
+            <td>ENST00000586173.1;ENST00000586420.5;ENST00000591061.5;ENST00000585603.6;ENST00000221770.7;ENST00000586823.5;ENST00000591824.5;ENST00000588551.5;ENST00000590688.1;ENST00000586136.5</td>
+            <td>13;13;13;13;2;0;5;6;23;74</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 36489690</td>
+            <td> 36489690</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000592087.1;ENST00000434377.6;ENST00000424129.7;ENST00000427002.2;ENST00000392170.7;ENST00000452939.7;ENST00000460937.5;ENST00000480361.1</td>
+            <td>40;254;183;152;128;128;170;128</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 38374784</td>
+            <td> 38374784</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000700295.1;ENST00000585598.1;ENST00000602911.5;ENST00000591216.2;ENST00000592561.5;ENST00000592001.6;ENST00000700296.1;ENST00000700297.1;ENST00000592035.5;ENST00000591250.1</td>
+            <td>92;25;24;13;11;11;4;0;224;272</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 38850691</td>
+            <td> 38850691</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000221419.10;ENST00000647557.2;ENST00000601813.1</td>
+            <td>704;704;750</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>109213915</td>
+            <td>109213915</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000234677.7;ENST00000482384.1;ENST00000477544.5;ENST00000369923.4</td>
+            <td>2;16;52;66</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 44809140</td>
+            <td> 44809140</td>
+            <td>promoter-TSS</td>
+            <td>BCAM</td>
+            <td>ENST00000611077.5;ENST00000270233.12;ENST00000588303.1;ENST00000591520.6;ENST00000588603.1</td>
+            <td>68;36;24;18;9</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 45178225</td>
+            <td> 45178225</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000433642.3;ENST00000587722.1;ENST00000006275.8;ENST00000588062.5;ENST00000585934.1;ENST00000592647.1;ENST00000587818.1</td>
+            <td>558;997;11;11;11;1;13</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 45584724</td>
+            <td> 45584724</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000323060.4;ENST00000263275.5</td>
+            <td>77;77</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 46787469</td>
+            <td> 46787469</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000612522.1;ENST00000617006.1;ENST00000412532.6</td>
+            <td>345;345;126</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>109484020</td>
+            <td>109484020</td>
+            <td>promoter-TSS</td>
+            <td>ATXN7L2</td>
+            <td>ENST00000369870.7;ENST00000604728.6;ENST00000684449.1;ENST00000684472.1</td>
+            <td>80;65;65;65</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 46850807</td>
+            <td> 46850807</td>
+            <td>promoter-TSS</td>
+            <td>AP2S1</td>
+            <td>ENST00000352203.8;ENST00000601498.5;ENST00000599990.5;ENST00000593442.5;ENST00000263270.11;ENST00000601649.1;ENST00000597421.1</td>
+            <td>29;490;37;26;38;40;17</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>109619763</td>
+            <td>109619763</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000474459.6;ENST00000680192.1;ENST00000667949.2;ENST00000680519.1;ENST00000342115.8;ENST00000528667.7;ENST00000469039.2;ENST00000531203.6;ENST00000256578.8;ENST00000679935.1</td>
+            <td>67;73;73;73;73;73;82;844;890;146</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>109621019</td>
+            <td>109621019</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000681108.1;ENST00000680148.1;ENST00000680820.1;ENST00000681181.1;ENST00000680132.1;ENST00000680531.1;ENST00000680929.1;ENST00000679892.1;ENST00000681132.1;ENST00000679981.1;ENST00000681218.1;ENST00000681834.1;ENST00000680832.1;ENST00000681862.1;ENST00000681496.1;ENST00000679379.1;ENST00000652975.2;ENST00000486282.7;ENST00000369840.7;ENST00000528270.6;ENST00000663749.1;ENST00000668421.1;ENST00000358729.9;ENST00000659122.2;ENST00000476688.3;ENST00000526301.6;ENST00000527846.7</td>
+            <td>90;67;67;67;67;67;67;67;67;60;50;50;50;50;50;54;62;64;83;98;121;132;156;156;212;249;326</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 49487583</td>
+            <td> 49487583</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000679106.1;ENST00000621674.4;ENST00000624069.3;ENST00000472481.5;ENST00000486930.6;ENST00000484279.5;ENST00000488946.1;ENST00000391857.9;ENST00000676477.1;ENST00000678510.1;ENST00000678146.1;ENST00000677048.1;ENST00000479992.5;ENST00000676556.1;ENST00000477613.6;ENST00000467825.2</td>
+            <td>72;28;19;24;24;24;24;24;24;24;25;25;31;32;41;50</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 49496457</td>
+            <td> 49496457</td>
+            <td>promoter-TSS</td>
+            <td>RPS11</td>
+            <td>ENST00000600027.5;ENST00000599167.5;ENST00000602252.5;ENST00000596873.1;ENST00000594493.1;ENST00000270625.7;ENST00000601216.1;ENST00000599561.1;ENST00000601306.1</td>
+            <td>91;86;25;24;22;22;20;2;8</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 49813348</td>
+            <td> 49813348</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000313777.9;ENST00000525130.5;ENST00000528094.5;ENST00000533418.5;ENST00000525370.5;ENST00000377092.8;ENST00000528043.5;ENST00000531017.5;ENST00000527585.5;ENST00000534008.5;ENST00000526575.1;ENST00000525800.5;ENST00000527111.2;ENST00000526435.1</td>
+            <td>55;157;172;98;191;74;98;38;61;106;169;112;48;63</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 52527720</td>
+            <td> 52527720</td>
+            <td>promoter-TSS</td>
+            <td>ZNF808</td>
+            <td>ENST00000487863.5;ENST00000465448.5;ENST00000486474.5;ENST00000359798.9;ENST00000461779.5</td>
+            <td>67;56;51;51;10</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>110338563</td>
+            <td>110338563</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000652747.1;ENST00000602849.1;ENST00000487146.8;ENST00000618772.4;ENST00000369784.9;ENST00000650953.2;ENST00000652342.2;ENST00000654015.1;ENST00000617047.1</td>
+            <td>56;759;759;759;813;858;861;861;902</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 55385943</td>
+            <td> 55385943</td>
+            <td>promoter-TSS</td>
+            <td>RPL28</td>
+            <td>ENST00000431533.6;ENST00000428193.6;ENST00000558815.5;ENST00000344063.7;ENST00000560583.5;ENST00000560055.5;ENST00000560881.5;ENST00000559463.5;ENST00000558131.1;ENST00000426763.3;ENST00000558752.1</td>
+            <td>10;10;10;10;8;6;0;17;406;406;413</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 58387076</td>
+            <td> 58387076</td>
+            <td>promoter-TSS</td>
+            <td>RPS5</td>
+            <td>ENST00000598098.5;ENST00000598495.5;ENST00000196551.8;ENST00000599909.1;ENST00000598807.1;ENST00000596046.1;ENST00000582477.1</td>
+            <td>187;192;192;198;207;212;217</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>  8678129</td>
+            <td>  8678129</td>
+            <td>promoter-TSS</td>
+            <td>ID2</td>
+            <td>ENST00000234091.8</td>
+            <td>715</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 11466166</td>
+            <td> 11466166</td>
+            <td>promoter-TSS</td>
+            <td>E2F6</td>
+            <td>ENST00000428221.5;ENST00000444832.5;ENST00000381525.8;ENST00000307236.8;ENST00000542100.5;ENST00000546212.2;ENST00000455198.5;ENST00000437573.5;ENST00000421117.1;ENST00000468775.1;ENST00000498701.1</td>
+            <td>19;9;4;10;10;10;286;12;4;62;7</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>112619856</td>
+            <td>112619856</td>
+            <td>promoter-TSS</td>
+            <td>CAPZA1</td>
+            <td>ENST00000485542.5;ENST00000476936.5;ENST00000498626.1;ENST00000263168.4;ENST00000358039.9;ENST00000361846.7;ENST00000360743.8;ENST00000490715.5;ENST00000480988.5;ENST00000369669.5;ENST00000490067.5;ENST00000497457.5;ENST00000343210.11;ENST00000369666.5;ENST00000497235.5;ENST00000479436.5;ENST00000470519.5;ENST00000459630.5;ENST00000477332.5;ENST00000473206.5;ENST00000470683.1;ENST00000498383.5;ENST00000467335.5;ENST00000492274.1</td>
+            <td>50;36;23;23;714;711;666;72;742;927;666;752;666;666;738;914;191;183;756;729;744;744;81;59</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 27212352</td>
+            <td> 27212352</td>
+            <td>promoter-TSS</td>
+            <td>ATRAID</td>
+            <td>ENST00000405489.7;ENST00000419744.1;ENST00000491220.1;ENST00000310574.8;ENST00000488743.6;ENST00000408041.5;ENST00000445802.5;ENST00000412471.5;ENST00000401463.5;ENST00000426119.5;ENST00000414408.5</td>
+            <td>17;513;842;83;205;599;413;321;558;463;89</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 27771732</td>
+            <td> 27771732</td>
+            <td>promoter-TSS</td>
+            <td>MRPL33</td>
+            <td>ENST00000379666.7;ENST00000296102.8;ENST00000448427.1;ENST00000472192.1;ENST00000483992.5;ENST00000476552.1</td>
+            <td>14;12;6;11;242;457</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 32010508</td>
+            <td> 32010508</td>
+            <td>promoter-TSS</td>
+            <td>MEMO1</td>
+            <td>ENST00000295065.9;ENST00000426310.6;ENST00000413686.1;ENST00000407893.3</td>
+            <td>48;132;90;9</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 32011140</td>
+            <td> 32011140</td>
+            <td>promoter-TSS</td>
+            <td>MEMO1</td>
+            <td>ENST00000295065.9;ENST00000404530.6;ENST00000490459.5;ENST00000426310.6;ENST00000413686.1;ENST00000407893.3;ENST00000437854.1</td>
+            <td>582;131;103;764;722;641;89</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>114758137</td>
+            <td>114758137</td>
+            <td>promoter-TSS</td>
+            <td>CSDE1</td>
+            <td>ENST00000339438.10;ENST00000689989.1;ENST00000689217.1;ENST00000438362.7;ENST00000688211.1;ENST00000358528.9;ENST00000692719.1;ENST00000610726.5;ENST00000689732.1;ENST00000693467.1;ENST00000686235.1;ENST00000684913.1;ENST00000686123.1;ENST00000686025.1;ENST00000686781.1;ENST00000687759.1;ENST00000693644.1;ENST00000691377.1;ENST00000692672.1;ENST00000529046.6;ENST00000685676.1;ENST00000686667.1;ENST00000689885.1;ENST00000690013.1;ENST00000690420.1;ENST00000691032.1;ENST00000691403.1;ENST00000692629.1;ENST00000692950.1;ENST00000692044.1;ENST00000688611.1;ENST00000689510.1;ENST00000690207.1;ENST00000693311.1;ENST00000687548.1;ENST00000483030.2;ENST00000686581.1;ENST00000689727.1;ENST00000690784.1;ENST00000261443.9;ENST00000530886.5;ENST00000369530.5;ENST00000534699.5;ENST00000524652.2;ENST00000525132.1;ENST00000525970.5;ENST00000533818.5</td>
+            <td>153;203;167;153;153;152;149;122;203;172;153;152;137;133;133;160;133;151;151;149;133;133;133;133;133;133;133;133;133;131;133;133;133;133;143;133;133;133;133;162;109;133;154;133;167;149;149</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 43676365</td>
+            <td> 43676365</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000475092.4</td>
+            <td>63</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 48111378</td>
+            <td> 48111378</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000650693.1</td>
+            <td>12</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 54115833</td>
+            <td> 54115833</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000686068.1</td>
+            <td>37</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 61471085</td>
+            <td> 61471085</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000603652.2;ENST00000664869.2;ENST00000603028.5;ENST00000703027.1;ENST00000603199.3;ENST00000692738.1;ENST00000702649.1;ENST00000578974.2;ENST00000398571.7;ENST00000453133.1</td>
+            <td>102;264;270;283;284;285;300;369;1;394</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 74458458</td>
+            <td> 74458458</td>
+            <td>promoter-TSS</td>
+            <td>WBP1</td>
+            <td>ENST00000393972.7;ENST00000233615.7;ENST00000474185.5;ENST00000466835.5;ENST00000464774.6;ENST00000470536.5;ENST00000484744.5;ENST00000409737.5;ENST00000428943.1;ENST00000494741.5;ENST00000473467.5;ENST00000466303.1;ENST00000492047.1;ENST00000490120.1</td>
+            <td>57;19;18;17;7;7;0;10;13;15;29;53;421;753</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>149888573</td>
+            <td>149888573</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000331128.6</td>
+            <td>607</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 15835849</td>
+            <td> 15835849</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000673875.1</td>
+            <td>245</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>150561555</td>
+            <td>150561555</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000689641.2</td>
+            <td>88</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>148644758</td>
+            <td>148644758</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000258484.11;ENST00000409654.5;ENST00000397424.2</td>
+            <td>6;240;661</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>151254786</td>
+            <td>151254786</td>
+            <td>promoter-TSS</td>
+            <td>PSMD4</td>
+            <td>ENST00000368881.8;ENST00000368884.8;ENST00000461434.1;ENST00000462970.5;ENST00000476855.5</td>
+            <td>76;51;27;22;16</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>165469520</td>
+            <td>165469520</td>
+            <td>promoter-TSS</td>
+            <td>CSRNP3</td>
+            <td>ENST00000421875.5;ENST00000314499.11;ENST00000409664.5;ENST00000651982.1;ENST00000464503.1</td>
+            <td>126;126;177;177;185</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>174487441</td>
+            <td>174487441</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000661056.2;ENST00000703040.1;ENST00000444196.1;ENST00000417038.1;ENST00000606406.1;ENST00000392552.7;ENST00000614352.4;ENST00000392551.6;ENST00000295500.8;ENST00000497620.1</td>
+            <td>60;53;51;37;70;411;352;346;403;440</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>177619097</td>
+            <td>177619097</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000355689.6</td>
+            <td>354</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>153958546</td>
+            <td>153958546</td>
+            <td>promoter-TSS</td>
+            <td>CRTC2</td>
+            <td>ENST00000303569.10;ENST00000368630.7;ENST00000368633.2;ENST00000487235.5;ENST00000476883.5;ENST00000492073.1</td>
+            <td>68;29;65;17;422;341</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>154272614</td>
+            <td>154272614</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000531435.6;ENST00000457918.6;ENST00000471326.6;ENST00000696938.1;ENST00000483970.7;ENST00000696941.1;ENST00000696965.1;ENST00000447768.7;ENST00000696945.1;ENST00000459914.2;ENST00000696931.1;ENST00000696933.1;ENST00000696929.1;ENST00000328703.12;ENST00000697830.1;ENST00000477780.3;ENST00000697592.1;ENST00000696966.1;ENST00000435087.2;ENST00000532105.1;ENST00000696944.1</td>
+            <td>59;24;6;4;4;1;4;5;6;8;8;8;9;14;21;22;37;47;53;53;89</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>197516061</td>
+            <td>197516061</td>
+            <td>promoter-TSS</td>
+            <td>MOB4</td>
+            <td>ENST00000448447.6;ENST00000323303.9;ENST00000497443.5;ENST00000417097.5;ENST00000409355.2;ENST00000409360.1</td>
+            <td>13;4;12;12;22;98</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>200864668</td>
+            <td>200864668</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000321356.9;ENST00000432425.5;ENST00000473565.5;ENST00000409403.6;ENST00000434813.3;ENST00000492793.1;ENST00000481641.1;ENST00000482590.1</td>
+            <td>9;11;22;5;106;10;415;9</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>208255273</td>
+            <td>208255273</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000440574.2;ENST00000448588.1;ENST00000345146.7;ENST00000446179.5;ENST00000415913.5;ENST00000415282.5;ENST00000462386.5;ENST00000481557.1</td>
+            <td>58;126;201;814;950;933;211;159</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>155934378</td>
+            <td>155934378</td>
+            <td>promoter-TSS</td>
+            <td>KHDC4</td>
+            <td>ENST00000368320.7;ENST00000368321.8;ENST00000368319.3;ENST00000482337.5;ENST00000466713.1;ENST00000491599.1</td>
+            <td>20;34;4;11;19;21</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>156661409</td>
+            <td>156661409</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000448869.1</td>
+            <td>14</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>230864953</td>
+            <td>230864953</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000326427.11;ENST00000335005.10;ENST00000326407.10;ENST00000543957.5;ENST00000409704.6;ENST00000418408.2</td>
+            <td>10;4;26;294;314;710</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>237085904</td>
+            <td>237085904</td>
+            <td>promoter-TSS</td>
+            <td>COPS8</td>
+            <td>ENST00000392008.6;ENST00000409334.5;ENST00000470452.5;ENST00000354371.7;ENST00000419015.1;ENST00000662924.1;ENST00000666653.1;ENST00000669095.1;ENST00000667956.1;ENST00000660650.1;ENST00000655155.1;ENST00000667175.1;ENST00000657607.1;ENST00000418430.1</td>
+            <td>21;19;17;14;4;135;65;83;135;65;86;174;135;86</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td>   543790</td>
+            <td>   543790</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000217244.9;ENST00000646561.1;ENST00000643660.1;ENST00000645623.1;ENST00000400227.8;ENST00000349736.10;ENST00000643700.1;ENST00000644170.1;ENST00000645910.1;ENST00000645840.1;ENST00000646305.1;ENST00000645260.1;ENST00000642689.1;ENST00000645234.1;ENST00000646814.1;ENST00000644885.1;ENST00000646477.1;ENST00000644710.1;ENST00000647155.1;ENST00000644003.1;ENST00000645249.1;ENST00000647026.1;ENST00000400217.7;ENST00000647348.1;ENST00000643600.1;ENST00000643680.1;ENST00000460062.7;ENST00000643968.1;ENST00000644177.1;ENST00000609525.2;ENST00000645091.1;ENST00000609606.6;ENST00000608066.6;ENST00000645187.1;ENST00000642160.1;ENST00000608490.2;ENST00000643910.1</td>
+            <td>0;44;57;51;93;1;77;60;30;0;77;62;57;77;77;77;57;54;62;54;57;57;59;2;71;39;19;85;22;85;62;0;60;8;25;61;550</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td>  2652653</td>
+            <td>  2652653</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000651302.1;ENST00000494697.5;ENST00000329276.10;ENST00000470143.1;ENST00000469588.5;ENST00000445139.1;ENST00000408135.1;ENST00000460258.5</td>
+            <td>59;20;20;19;6;3;123;347</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 17969495</td>
+            <td> 17969495</td>
+            <td>promoter-TSS</td>
+            <td>MGME1</td>
+            <td>ENST00000463219.1;ENST00000467391.1;ENST00000490175.5;ENST00000377768.7;ENST00000377759.9;ENST00000419004.2;ENST00000474883.5;ENST00000469704.1;ENST00000606557.1;ENST00000606602.1;ENST00000481323.1;ENST00000486039.1</td>
+            <td>535;561;694;514;700;983;738;734;720;709;683;700</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>161132567</td>
+            <td>161132567</td>
+            <td>promoter-TSS</td>
+            <td>DEDD</td>
+            <td>ENST00000458050.6;ENST00000489249.5;ENST00000464113.1;ENST00000473679.6;ENST00000463227.5;ENST00000496632.1</td>
+            <td>100;4;20;116;90;415</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 25248113</td>
+            <td> 25248113</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000216962.9</td>
+            <td>27</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 25407772</td>
+            <td> 25407772</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000262460.5;ENST00000696798.1;ENST00000696862.1;ENST00000696870.1;ENST00000696874.1;ENST00000696807.1;ENST00000696804.1;ENST00000696805.1;ENST00000696894.1;ENST00000696875.1;ENST00000696876.1;ENST00000696877.1;ENST00000696793.1;ENST00000696813.1;ENST00000696878.1;ENST00000696814.1;ENST00000484893.2;ENST00000696895.1;ENST00000696803.1</td>
+            <td>98;95;88;86;86;86;85;73;69;64;62;42;42;42;42;42;40;32;2</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 32109721</td>
+            <td> 32109721</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000398022.7;ENST00000442842.5;ENST00000450829.5;ENST00000217315.9;ENST00000417389.1</td>
+            <td>6;3;6;14;45</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 33993075</td>
+            <td> 33993075</td>
+            <td>promoter-TSS</td>
+            <td>RALY</td>
+            <td>ENST00000375114.7;ENST00000448364.5;ENST00000413297.5;ENST00000246194.8;ENST00000333552.9;ENST00000645622.1;ENST00000432859.1;ENST00000669769.1</td>
+            <td>570;604;726;835;877;58;48;201</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>161399322</td>
+            <td>161399322</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000636161.1;ENST00000667751.1</td>
+            <td>86;675</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 38962104</td>
+            <td> 38962104</td>
+            <td>promoter-TSS</td>
+            <td>DHX35</td>
+            <td>ENST00000373325.6;ENST00000373323.8;ENST00000252011.8;ENST00000652169.1;ENST00000484417.5;ENST00000615559.1;ENST00000570096.1</td>
+            <td>194;239;239;245;255;367;6</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 50931709</td>
+            <td> 50931709</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000621696.5;ENST00000673732.1;ENST00000396029.8;ENST00000396032.8;ENST00000645081.1</td>
+            <td>271;271;333;287;344</td>
+          </tr>
+
+          <tr>
+            <td>chr20</td>
+            <td> 62143789</td>
+            <td> 62143789</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000331758.8;ENST00000450482.5;ENST00000370873.9;ENST00000484488.5;ENST00000370858.3</td>
+            <td>19;5;394;348;358</td>
+          </tr>
+
+          <tr>
+            <td>chr21</td>
+            <td> 44818039</td>
+            <td> 44818039</td>
+            <td>promoter-TSS</td>
+            <td>SUMO3</td>
+            <td>ENST00000397898.7;ENST00000332859.11;ENST00000411651.6;ENST00000397893.3;ENST00000466861.1</td>
+            <td>11;22;89;70;65</td>
+          </tr>
+
+          <tr>
+            <td>chr21</td>
+            <td> 44873678</td>
+            <td> 44873678</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000686815.2;ENST00000397887.7;ENST00000330938.8;ENST00000494690.5;ENST00000480234.1</td>
+            <td>306;30;11;645;9</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 21629983</td>
+            <td> 21629983</td>
+            <td>promoter-TSS</td>
+            <td>YDJC</td>
+            <td>ENST00000464015.5;ENST00000292778.11;ENST00000468686.5;ENST00000415762.6;ENST00000473985.1;ENST00000482998.1;ENST00000398873.4</td>
+            <td>28;38;47;80;54;30;51</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 37686335</td>
+            <td> 37686335</td>
+            <td>promoter-TSS</td>
+            <td>NOL12</td>
+            <td>ENST00000438329.5;ENST00000474032.1;ENST00000359114.9;ENST00000468597.5;ENST00000611699.1;ENST00000455236.4</td>
+            <td>11;7;7;10;24;78</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 38872187</td>
+            <td> 38872187</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000407418.8;ENST00000216083.6;ENST00000469420.1</td>
+            <td>28;28;61</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 39319586</td>
+            <td> 39319586</td>
+            <td>promoter-TSS</td>
+            <td>RPL3</td>
+            <td>ENST00000401609.5;ENST00000216146.9;ENST00000402527.5;ENST00000453303.5;ENST00000427905.5;ENST00000420536.1;ENST00000484615.5;ENST00000460589.5;ENST00000461967.1;ENST00000498462.1;ENST00000459859.1;ENST00000583861.1</td>
+            <td>971;36;36;474;8;36;62;5;36;8;38;472</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 40044516</td>
+            <td> 40044516</td>
+            <td>promoter-TSS</td>
+            <td>TNRC6B</td>
+            <td>ENST00000441751.5;ENST00000301923.13;ENST00000402203.5;ENST00000569912.2</td>
+            <td>300;300;957;48</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 41092563</td>
+            <td> 41092563</td>
+            <td>promoter-TSS</td>
+            <td>MIR1281</td>
+            <td>ENST00000408233.1;ENST00000263253.9;ENST00000703544.1;ENST00000674155.1</td>
+            <td>49;28;356;441</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 41590282</td>
+            <td> 41590282</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000216259.8;ENST00000472620.5;ENST00000485648.5;ENST00000466645.5;ENST00000478337.1;ENST00000414636.1;ENST00000493389.1</td>
+            <td>441;410;463;485;456;434;452</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 12968035</td>
+            <td> 12968035</td>
+            <td>promoter-TSS</td>
+            <td>IQSEC1</td>
+            <td>ENST00000273221.8;ENST00000474467.1</td>
+            <td>366;574</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>170531992</td>
+            <td>170531992</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000686870.1;ENST00000685515.1;ENST00000686135.1;ENST00000367762.2;ENST00000687880.1;ENST00000692875.1;ENST00000688688.1;ENST00000688499.1;ENST00000692234.1;ENST00000690898.1;ENST00000691235.1;ENST00000498166.6;ENST00000689173.1;ENST00000687370.1;ENST00000367763.8;ENST00000693173.1;ENST00000690124.1;ENST00000691574.1;ENST00000693373.1;ENST00000692855.1;ENST00000654034.1;ENST00000421020.1</td>
+            <td>129;136;138;138;138;138;138;138;152;154;154;158;158;173;173;176;179;197;362;387;687;7</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 33798656</td>
+            <td> 33798656</td>
+            <td>promoter-TSS</td>
+            <td>PDCD6IP</td>
+            <td>ENST00000457054.6;ENST00000648706.1;ENST00000435909.5;ENST00000430877.5;ENST00000413073.1;ENST00000477798.5;ENST00000307296.8;ENST00000498147.5;ENST00000604982.2</td>
+            <td>84;80;44;34;32;25;25;283;116</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 49021492</td>
+            <td> 49021492</td>
+            <td>promoter-TSS</td>
+            <td>NDUFAF3</td>
+            <td>ENST00000451378.2;ENST00000496152.1;ENST00000480392.1;ENST00000326925.11;ENST00000440857.5;ENST00000313778.9;ENST00000384873.3</td>
+            <td>112;620;628;628;433;240;782</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 75435092</td>
+            <td> 75435092</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000669491.1;ENST00000665635.1;ENST00000666032.1;ENST00000658414.1;ENST00000660604.1;ENST00000656378.1;ENST00000658684.1;ENST00000654411.1;ENST00000653360.1;ENST00000657034.1;ENST00000658264.1;ENST00000653346.1;ENST00000662055.1;ENST00000659468.1;ENST00000669403.1;ENST00000662833.1;ENST00000670995.1;ENST00000663384.1;ENST00000667045.1;ENST00000661244.1;ENST00000659018.1;ENST00000669740.1;ENST00000654265.1;ENST00000608707.2;ENST00000608169.6;ENST00000656497.1;ENST00000667743.1;ENST00000658641.1;ENST00000658657.1;ENST00000689037.1;ENST00000702150.1;ENST00000702306.1;ENST00000497543.5;ENST00000478666.6;ENST00000689507.1;ENST00000690400.1;ENST00000692276.1;ENST00000690979.2;ENST00000484945.6;ENST00000686855.1;ENST00000700858.1;ENST00000459803.7;ENST00000689430.2;ENST00000489609.6;ENST00000701921.1;ENST00000690600.1;ENST00000702046.1;ENST00000685730.1;ENST00000700981.1;ENST00000702024.1;ENST00000689391.1;ENST00000702233.1;ENST00000477247.6;ENST00000491583.1</td>
+            <td>139;177;177;177;178;182;182;186;189;189;189;189;189;189;190;205;206;215;224;227;241;241;241;243;243;243;243;273;918;21;6;72;43;32;32;32;32;32;32;32;32;32;17;19;21;32;32;17;21;22;32;19;17;122</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>107240740</td>
+            <td>107240740</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000660597.1;ENST00000669523.1;ENST00000651804.1;ENST00000654269.1;ENST00000667603.1;ENST00000657097.1;ENST00000667620.1;ENST00000667442.1;ENST00000495228.2;ENST00000663370.1;ENST00000466734.6;ENST00000669723.1;ENST00000653298.1;ENST00000667411.2;ENST00000463143.5;ENST00000490441.1;ENST00000670833.1;ENST00000658510.1;ENST00000660575.1;ENST00000657581.1;ENST00000662418.1;ENST00000665694.1;ENST00000667710.1;ENST00000659955.1;ENST00000653509.1;ENST00000667856.1;ENST00000655772.1;ENST00000473550.1;ENST00000659830.1;ENST00000660862.1;ENST00000668760.1;ENST00000671682.1;ENST00000484698.5;ENST00000662455.1;ENST00000667805.1;ENST00000656342.1;ENST00000671604.1;ENST00000659129.1;ENST00000664169.1;ENST00000658929.1;ENST00000655451.1;ENST00000666687.1;ENST00000662123.1;ENST00000659859.1;ENST00000666429.1;ENST00000668928.1;ENST00000660353.1;ENST00000671678.1;ENST00000657806.1;ENST00000667931.1;ENST00000668963.1;ENST00000670214.1;ENST00000656555.1;ENST00000664426.1;ENST00000660515.1;ENST00000660263.1;ENST00000656235.1;ENST00000659503.1;ENST00000654704.1;ENST00000662816.1;ENST00000669924.1;ENST00000660310.1;ENST00000665402.2;ENST00000667876.1;ENST00000665806.1;ENST00000661400.1;ENST00000477210.7;ENST00000702844.1;ENST00000662886.1;ENST00000669363.1;ENST00000659809.1;ENST00000607801.6;ENST00000671205.1;ENST00000473636.2;ENST00000657720.1;ENST00000479612.7;ENST00000664588.1;ENST00000663024.1;ENST00000652783.1;ENST00000658706.1;ENST00000660636.1;ENST00000669624.1;ENST00000656816.1;ENST00000666382.1;ENST00000669895.1;ENST00000666600.1</td>
+            <td>75;75;64;54;54;49;49;49;49;49;47;47;47;47;47;47;43;31;27;24;21;21;21;21;21;21;19;18;12;76;156;156;107;75;120;97;146;135;71;69;131;131;120;107;94;87;78;146;131;107;94;155;107;137;102;91;137;146;101;225;146;68;76;84;91;146;137;73;162;142;137;101;146;87;68;131;127;120;101;101;94;91;76;76;142;99</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>111999363</td>
+            <td>111999363</td>
+            <td>promoter-TSS</td>
+            <td>TAGLN3</td>
+            <td>ENST00000494932.1</td>
+            <td>14</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>125916641</td>
+            <td>125916641</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000688253.1;ENST00000691323.1;ENST00000690857.1;ENST00000693592.1;ENST00000693742.2;ENST00000485843.3;ENST00000693415.1;ENST00000701225.1;ENST00000685585.1;ENST00000701267.1;ENST00000701661.1;ENST00000701904.1;ENST00000701369.1;ENST00000689246.1;ENST00000701718.1;ENST00000687642.1;ENST00000467239.5;ENST00000484500.5;ENST00000486431.5;ENST00000688271.1;ENST00000685927.1;ENST00000692268.1;ENST00000664857.1;ENST00000625484.1;ENST00000626334.1;ENST00000650374.1;ENST00000628476.1;ENST00000626312.1</td>
+            <td>31;31;31;31;31;31;31;28;25;25;25;25;25;25;21;21;20;16;15;37;76;76;883;911;971;280;757;256</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>130111473</td>
+            <td>130111473</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000665912.1;ENST00000693359.1;ENST00000691477.1;ENST00000515245.6;ENST00000689836.1;ENST00000691189.1;ENST00000702087.1;ENST00000689096.1;ENST00000691825.2;ENST00000687597.1;ENST00000690856.1;ENST00000689862.1;ENST00000692815.1;ENST00000511564.6;ENST00000689626.1;ENST00000500074.3;ENST00000688071.1;ENST00000686686.1;ENST00000701005.1;ENST00000701414.1;ENST00000506448.2;ENST00000687284.1;ENST00000513466.5;ENST00000701858.1;ENST00000688587.2;ENST00000690402.1</td>
+            <td>195;13;24;41;7;7;7;13;13;15;18;24;24;13;24;39;45;13;13;24;13;15;0;7;32;13</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>139389628</td>
+            <td>139389628</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000653359.1;ENST00000662234.1;ENST00000658348.1;ENST00000504670.7;ENST00000690901.1;ENST00000686351.1;ENST00000685603.2;ENST00000691594.2;ENST00000507362.5;ENST00000512622.1;ENST00000510068.5;ENST00000515247.5;ENST00000660194.1;ENST00000514729.1;ENST00000655667.1;ENST00000661884.1;ENST00000677073.1;ENST00000677309.1;ENST00000677601.1;ENST00000677882.1;ENST00000503326.6;ENST00000510181.6;ENST00000333188.10;ENST00000514508.2;ENST00000507777.6;ENST00000512242.6;ENST00000515006.5;ENST00000512153.5;ENST00000513274.5;ENST00000510491.5;ENST00000504295.1</td>
+            <td>132;156;171;177;177;186;186;186;189;201;209;211;216;247;247;370;19;28;28;28;42;17;18;41;47;51;11;51;19;67;17</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>149813186</td>
+            <td>149813186</td>
+            <td>promoter-TSS</td>
+            <td>RNF13</td>
+            <td>ENST00000491086.5;ENST00000467977.5;ENST00000392894.8;ENST00000474348.5;ENST00000467996.1;ENST00000468648.5;ENST00000459632.5</td>
+            <td>17;28;28;41;78;633;650</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>159839974</td>
+            <td>159839974</td>
+            <td>promoter-TSS</td>
+            <td>SCHIP1</td>
+            <td>ENST00000461058.5;ENST00000495954.5;ENST00000483730.1;ENST00000472483.5</td>
+            <td>35;33;85;124</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>177196736</td>
+            <td>177196736</td>
+            <td>promoter-TSS</td>
+            <td>TBL1XR1</td>
+            <td>ENST00000430069.5;ENST00000704385.1;ENST00000428970.5;ENST00000424913.5;ENST00000437738.5;ENST00000630796.2;ENST00000443315.5;ENST00000491623.2;ENST00000637123.1</td>
+            <td>257;235;251;302;312;253;300;382;335</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>183697649</td>
+            <td>183697649</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000305135.10</td>
+            <td>147</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>191425527</td>
+            <td>191425527</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000657540.1;ENST00000662007.1;ENST00000664732.1;ENST00000666632.1;ENST00000668751.1;ENST00000439804.6;ENST00000663647.1;ENST00000669884.1;ENST00000664994.1;ENST00000641158.1;ENST00000656380.1;ENST00000642133.1;ENST00000660290.1;ENST00000653490.1;ENST00000656942.1;ENST00000666456.1;ENST00000668276.1;ENST00000671595.1;ENST00000669360.1;ENST00000651548.2;ENST00000661029.1;ENST00000658347.1;ENST00000661668.1;ENST00000662578.1;ENST00000641055.1</td>
+            <td>33;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>195271333</td>
+            <td>195271333</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000310380.11;ENST00000455281.1</td>
+            <td>173;471</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>   674262</td>
+            <td>   674262</td>
+            <td>promoter-TSS</td>
+            <td>MYL5</td>
+            <td>ENST00000503300.5;ENST00000502720.1;ENST00000400159.7;ENST00000511290.5;ENST00000515202.5;ENST00000304312.5;ENST00000506525.5;ENST00000505852.1;ENST00000515116.1</td>
+            <td>240;279;279;297;140;13;440;67;738</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>   932253</td>
+            <td>   932253</td>
+            <td>promoter-TSS</td>
+            <td>TMEM175</td>
+            <td>ENST00000507319.5;ENST00000513952.5;ENST00000514453.5;ENST00000505734.1;ENST00000515492.5;ENST00000504744.5;ENST00000509508.5;ENST00000452360.6;ENST00000264771.9;ENST00000515876.5;ENST00000513682.5;ENST00000515740.5;ENST00000438836.6;ENST00000504505.1;ENST00000508204.5;ENST00000510493.5;ENST00000514546.5;ENST00000504850.1;ENST00000622959.3;ENST00000314167.9;ENST00000507580.5;ENST00000502656.5;ENST00000512325.3;ENST00000628912.1;ENST00000513935.1</td>
+            <td>133;150;172;178;190;192;206;206;206;207;208;211;218;221;224;226;228;233;263;62;63;73;63;73;32</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>  9153310</td>
+            <td>  9153310</td>
+            <td>promoter-TSS</td>
+            <td>FAM86KP</td>
+            <td>ENST00000509817.1</td>
+            <td>13</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td> 25914287</td>
+            <td> 25914287</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000506197.3;ENST00000514384.1</td>
+            <td>66;21</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td> 52722590</td>
+            <td> 52722590</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000651729.1</td>
+            <td>212</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td> 56436300</td>
+            <td> 56436300</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000512576.3;ENST00000264220.6;ENST00000510643.5;ENST00000507724.1</td>
+            <td>39;684;791;803</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td> 82429437</td>
+            <td> 82429437</td>
+            <td>promoter-TSS</td>
+            <td>HNRNPDL</td>
+            <td>ENST00000507721.5;ENST00000602300.5;ENST00000349655.8;ENST00000514511.1</td>
+            <td>39;3;9;11</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td> 82900480</td>
+            <td> 82900480</td>
+            <td>promoter-TSS</td>
+            <td>THAP9</td>
+            <td>ENST00000514440.1;ENST00000514244.5;ENST00000302236.10;ENST00000509353.5;ENST00000505901.1;ENST00000355196.6;ENST00000507676.5;ENST00000506495.5;ENST00000507051.1;ENST00000504792.6;ENST00000512932.5;ENST00000511271.5;ENST00000508772.5;ENST00000513581.5;ENST00000504718.5;ENST00000505028.5;ENST00000507660.5;ENST00000509007.1;ENST00000504869.1;ENST00000503704.1</td>
+            <td>203;222;254;285;288;57;57;88;88;27;78;85;88;88;21;88;90;78;85;88</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>140154182</td>
+            <td>140154182</td>
+            <td>promoter-TSS</td>
+            <td>MAML3</td>
+            <td>ENST00000509479.6</td>
+            <td>1</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>158672341</td>
+            <td>158672341</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000684296.1;ENST00000682734.1;ENST00000682601.1;ENST00000684622.1;ENST00000684552.1;ENST00000682456.1;ENST00000683483.1;ENST00000684641.1;ENST00000684675.1;ENST00000684627.1;ENST00000683478.1;ENST00000511912.6;ENST00000683079.1;ENST00000684505.1;ENST00000683305.1;ENST00000683751.1;ENST00000684036.1;ENST00000507475.6;ENST00000510353.5;ENST00000683004.1;ENST00000684611.1;ENST00000683448.1;ENST00000684129.1;ENST00000683750.1;ENST00000307738.5;ENST00000682409.1;ENST00000683081.1;ENST00000506422.1;ENST00000379205.5;ENST00000508457.1;ENST00000508836.1</td>
+            <td>89;86;74;74;74;74;74;74;74;64;50;44;44;44;33;33;33;27;24;24;24;11;8;6;1;6;35;63;453;448;85</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>169269141</td>
+            <td>169269141</td>
+            <td>promoter-TSS</td>
+            <td>SH3RF1</td>
+            <td>ENST00000508685.1</td>
+            <td>47</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>177309883</td>
+            <td>177309883</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000264596.4;ENST00000513321.1</td>
+            <td>8;19</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>   612343</td>
+            <td>   612343</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000264935.6;ENST00000506629.1</td>
+            <td>2;132</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>204494712</td>
+            <td>204494712</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000684373.1;ENST00000429009.1</td>
+            <td>92;10</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>205750168</td>
+            <td>205750168</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000367142.5</td>
+            <td>13</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 60945034</td>
+            <td> 60945034</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000678452.1;ENST00000677756.1;ENST00000296597.10;ENST00000511107.1;ENST00000677932.1;ENST00000502658.1;ENST00000676185.1;ENST00000682217.1;ENST00000675042.2;ENST00000381118.7;ENST00000675378.1;ENST00000643034.1;ENST00000647431.2;ENST00000682375.1;ENST00000439176.6;ENST00000683052.1;ENST00000643708.1;ENST00000265038.10;ENST00000675452.2;ENST00000683460.1;ENST00000684621.1;ENST00000684453.1;ENST00000683199.1;ENST00000647486.2;ENST00000682246.1;ENST00000684394.1;ENST00000675229.1;ENST00000497892.6;ENST00000682418.1;ENST00000682380.1;ENST00000477893.1;ENST00000682041.1;ENST00000682874.1</td>
+            <td>142;148;170;172;188;300;35;35;38;16;35;29;25;29;35;25;16;29;14;29;29;23;3;25;29;28;16;27;29;29;24;23;23</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 61332262</td>
+            <td> 61332262</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000252744.6;ENST00000691121.1</td>
+            <td>3;422</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 62412795</td>
+            <td> 62412795</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000325324.11;ENST00000506200.5</td>
+            <td>31;586</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 65723030</td>
+            <td> 65723030</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000381007.9;ENST00000506816.1</td>
+            <td>920;4</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>209938269</td>
+            <td>209938269</td>
+            <td>promoter-TSS</td>
+            <td>SYT14</td>
+            <td>ENST00000537238.5;ENST00000637265.1;ENST00000367019.6;ENST00000699295.1;ENST00000637945.1;ENST00000472886.5;ENST00000399639.6</td>
+            <td>94;82;51;35;17;17;8</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 90529558</td>
+            <td> 90529558</td>
+            <td>promoter-TSS</td>
+            <td>LYSMD3</td>
+            <td>ENST00000500869.6;ENST00000315948.11;ENST00000509384.5;ENST00000453259.2</td>
+            <td>2;25;25;25</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 98769365</td>
+            <td> 98769365</td>
+            <td>promoter-TSS</td>
+            <td>RGMB</td>
+            <td>ENST00000505265.5;ENST00000434027.2;ENST00000308234.11;ENST00000507054.1</td>
+            <td>70;70;69;70</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>212035523</td>
+            <td>212035523</td>
+            <td>promoter-TSS</td>
+            <td>DTL</td>
+            <td>ENST00000542077.5;ENST00000366991.5;ENST00000475419.5;ENST00000469606.5;ENST00000366994.8;ENST00000366993.7;ENST00000366992.7;ENST00000440600.6;ENST00000619805.1</td>
+            <td>29;224;322;12;33;12;2;15;6</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>138543721</td>
+            <td>138543721</td>
+            <td>promoter-TSS</td>
+            <td>ETF1</td>
+            <td>ENST00000499810.6;ENST00000360541.10;ENST00000512198.1;ENST00000572514.5;ENST00000507939.5</td>
+            <td>491;484;569;504;511</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>140639471</td>
+            <td>140639471</td>
+            <td>promoter-TSS</td>
+            <td>TMCO6</td>
+            <td>ENST00000513002.5;ENST00000509217.6;ENST00000394671.8;ENST00000511410.5;ENST00000394669.8;ENST00000504069.6;ENST00000515653.1;ENST00000514449.5;ENST00000505086.2;ENST00000252100.6</td>
+            <td>35;22;19;17;7;1;18;19;23;32</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>142325007</td>
+            <td>142325007</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000515288.3;ENST00000700840.1;ENST00000510311.5;ENST00000344120.4;ENST00000434127.3;ENST00000511815.1;ENST00000503582.1</td>
+            <td>201;207;285;5;13;824;589</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>147782569</td>
+            <td>147782569</td>
+            <td>promoter-TSS</td>
+            <td>JAKMIP2</td>
+            <td>ENST00000507386.5</td>
+            <td>26</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>177022730</td>
+            <td>177022730</td>
+            <td>promoter-TSS</td>
+            <td>ZNF346</td>
+            <td>ENST00000506693.5;ENST00000358149.8;ENST00000512315.5;ENST00000503425.5;ENST00000508155.5;ENST00000511834.5;ENST00000513587.5;ENST00000503039.1;ENST00000510933.1;ENST00000509236.5;ENST00000515488.1</td>
+            <td>33;33;33;25;13;1;4;4;173;127;96</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td>  5260718</td>
+            <td>  5260718</td>
+            <td>promoter-TSS</td>
+            <td>FARS2</td>
+            <td>ENST00000324331.10;ENST00000602691.1;ENST00000648580.1;ENST00000274680.9;ENST00000468929.5;ENST00000464010.5;ENST00000480566.5;ENST00000500576.4;ENST00000455814.2</td>
+            <td>325;607;780;794;23;14;23;18;2</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 26044001</td>
+            <td> 26044001</td>
+            <td>promoter-TSS</td>
+            <td>HIST1H2APS5</td>
+            <td>ENST00000454320.1;ENST00000615966.2</td>
+            <td>11;287</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 26124184</td>
+            <td> 26124184</td>
+            <td>promoter-TSS</td>
+            <td>HIST1H2AC</td>
+            <td>ENST00000314088.6;ENST00000377791.4;ENST00000602637.1;ENST00000314332.5;ENST00000396984.2</td>
+            <td>38;11;18;273;257</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 26234957</td>
+            <td> 26234957</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000244534.7</td>
+            <td>29</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 29942541</td>
+            <td> 29942541</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000376809.10;ENST00000496081.5;ENST00000376802.2;ENST00000495183.5;ENST00000461903.1;ENST00000479320.5;ENST00000638375.2;ENST00000706900.1</td>
+            <td>8;6;7;10;12;12;12;180</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 30061160</td>
+            <td> 30061160</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000611686.1;ENST00000376782.6;ENST00000359374.8;ENST00000376785.2;ENST00000332435.10;ENST00000463141.1;ENST00000688495.1;ENST00000425604.5;ENST00000448093.5;ENST00000376797.7;ENST00000420251.5;ENST00000702304.1;ENST00000685581.1;ENST00000701313.1;ENST00000701715.1;ENST00000421692.5;ENST00000431012.5;ENST00000690840.1;ENST00000701772.1;ENST00000701769.1;ENST00000700857.1</td>
+            <td>79;96;98;102;104;169;52;231;16;15;23;2;0;17;12;28;18;12;2;3;19</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 31272064</td>
+            <td> 31272064</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000692808.1;ENST00000487245.5;ENST00000383329.7;ENST00000376228.10;ENST00000376237.8;ENST00000415537.1;ENST00000495835.1;ENST00000484378.1</td>
+            <td>175;13;21;27;40;4;65;25</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 31547485</td>
+            <td> 31547485</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000376148.9;ENST00000376145.8;ENST00000496233.1;ENST00000473655.1;ENST00000376185.5;ENST00000480131.1;ENST00000475917.1;ENST00000303892.10;ENST00000376151.4;ENST00000483251.1;ENST00000483170.1;ENST00000481998.1</td>
+            <td>122;127;154;175;902;876;891;876;847;636;729;891</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 31814768</td>
+            <td> 31814768</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000375651.7;ENST00000608703.1</td>
+            <td>774;774</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 31959181</td>
+            <td> 31959181</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000697831.1;ENST00000488648.5;ENST00000697832.1;ENST00000494058.6;ENST00000483553.6;ENST00000697833.1;ENST00000491994.2;ENST00000461073.6;ENST00000697834.1;ENST00000465703.5;ENST00000697835.1;ENST00000485349.6;ENST00000697836.1;ENST00000697837.1;ENST00000697838.1;ENST00000697839.1;ENST00000697840.1;ENST00000474839.5;ENST00000375394.7;ENST00000697841.1;ENST00000492900.1;ENST00000697842.1;ENST00000375429.8;ENST00000492185.5;ENST00000488426.5;ENST00000481121.5;ENST00000375425.9;ENST00000444811.6;ENST00000441998.5;ENST00000454913.5;ENST00000436289.6;ENST00000492539.5;ENST00000426722.5;ENST00000491139.5;ENST00000494956.1;ENST00000625905.1</td>
+            <td>64;63;63;44;41;41;41;41;39;39;39;28;23;23;23;9;9;9;5;0;9;11;209;142;261;218;328;220;223;701;609;212;321;215;226;734</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 33272108</td>
+            <td> 33272108</td>
+            <td>promoter-TSS</td>
+            <td>RPS18</td>
+            <td>ENST00000474973.5;ENST00000439602.7;ENST00000474626.5;ENST00000476222.5;ENST00000496813.5;ENST00000490191.5;ENST00000482399.5;ENST00000478934.5;ENST00000445902.3;ENST00000463486.5;ENST00000464425.1</td>
+            <td>32;32;19;11;8;23;231;60;231;330;223</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 33322926</td>
+            <td> 33322926</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000374542.10;ENST00000266000.10;ENST00000706094.1;ENST00000414083.6;ENST00000620164.4;ENST00000468536.5;ENST00000446403.1;ENST00000498030.1;ENST00000446511.1</td>
+            <td>32;83;83;89;89;3;18;30;122</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 50818900</td>
+            <td> 50818900</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000393655.4</td>
+            <td>28</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 81753512</td>
+            <td> 81753512</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000320172.11;ENST00000369754.7;ENST00000369756.3</td>
+            <td>830;803;737</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 96521833</td>
+            <td> 96521833</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000369278.5;ENST00000658843.2;ENST00000662501.1;ENST00000430796.1;ENST00000685226.2;ENST00000686709.1</td>
+            <td>26;111;146;163;104;137</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>228103535</td>
+            <td>228103535</td>
+            <td>promoter-TSS</td>
+            <td>C1orf35</td>
+            <td>ENST00000469781.5;ENST00000485896.5;ENST00000272139.5;ENST00000492757.5;ENST00000465199.5;ENST00000491293.1</td>
+            <td>93;214;209;532;87;145</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td>127519457</td>
+            <td>127519457</td>
+            <td>promoter-TSS</td>
+            <td>C6orf58</td>
+            <td>ENST00000498112.1;ENST00000481848.6;ENST00000465909.3;ENST00000525778.6;ENST00000467753.1</td>
+            <td>1;455;565;121;536</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>231337825</td>
+            <td>231337825</td>
+            <td>promoter-TSS</td>
+            <td>SPRTN</td>
+            <td>ENST00000008440.9;ENST00000295050.12;ENST00000492437.1;ENST00000366645.1</td>
+            <td>430;467;469;26</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td>143060945</td>
+            <td>143060945</td>
+            <td>promoter-TSS</td>
+            <td>AIG1</td>
+            <td>ENST00000447498.5;ENST00000646199.1;ENST00000357847.9;ENST00000629020.2;ENST00000367596.5;ENST00000494282.6;ENST00000275235.8</td>
+            <td>91;90;55;45;43;43;43</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>233295724</td>
+            <td>233295724</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000258229.14;ENST00000506013.1</td>
+            <td>0;2</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td>156777997</td>
+            <td>156777997</td>
+            <td>promoter-TSS</td>
+            <td>ARID1B</td>
+            <td>ENST00000350026.10;ENST00000674298.1;ENST00000674190.1</td>
+            <td>66;55;976</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>   975539</td>
+            <td>   975539</td>
+            <td>promoter-TSS</td>
+            <td>COX19</td>
+            <td>ENST00000457254.5;ENST00000344111.4;ENST00000466146.1;ENST00000466853.1</td>
+            <td>9;9;9;422</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>  7640448</td>
+            <td>  7640448</td>
+            <td>promoter-TSS</td>
+            <td>UMAD1</td>
+            <td>ENST00000493246.5;ENST00000463725.5;ENST00000682710.1;ENST00000469183.5;ENST00000638342.1;ENST00000636849.1;ENST00000471760.5;ENST00000639110.1;ENST00000639343.1;ENST00000482067.3;ENST00000401447.1</td>
+            <td>262;303;303;303;308;327;335;335;335;345;421</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 22822830</td>
+            <td> 22822830</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000669358.1;ENST00000463284.2;ENST00000405021.7;ENST00000372879.8;ENST00000358435.9;ENST00000496129.1</td>
+            <td>123;18;485;38;18;19</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 23014078</td>
+            <td> 23014078</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000465661.2;ENST00000432176.7;ENST00000440481.6;ENST00000679826.1;ENST00000681402.1;ENST00000681237.1;ENST00000679789.1;ENST00000409923.5;ENST00000681766.1;ENST00000681079.1;ENST00000477349.5;ENST00000409763.1;ENST00000467005.6;ENST00000681468.1</td>
+            <td>8;51;51;5;9;51;9;5;8;8;9;3;12;9</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 29988599</td>
+            <td> 29988599</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000419103.1;ENST00000422239.6</td>
+            <td>0;0</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>236524557</td>
+            <td>236524557</td>
+            <td>promoter-TSS</td>
+            <td>LGALS8</td>
+            <td>ENST00000526634.5;ENST00000487567.2;ENST00000493812.2</td>
+            <td>23;48;56</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 66493524</td>
+            <td> 66493524</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000669732.3;ENST00000654121.1;ENST00000666724.1;ENST00000445681.1;ENST00000669130.1;ENST00000452565.1;ENST00000638592.1;ENST00000450353.3;ENST00000412091.1;ENST00000688360.2</td>
+            <td>82;134;134;181;191;261;168;6;41;40</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 73006204</td>
+            <td> 73006204</td>
+            <td>promoter-TSS</td>
+            <td>STAG3L3</td>
+            <td>ENST00000436857.5;ENST00000428423.5;ENST00000448173.5;ENST00000423834.6;ENST00000569650.1</td>
+            <td>482;285;288;281;418</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 73578565</td>
+            <td> 73578565</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000305632.11;ENST00000459913.5;ENST00000424598.5;ENST00000450285.5;ENST00000417008.5;ENST00000432538.5;ENST00000433464.5;ENST00000426966.5;ENST00000452475.5;ENST00000437521.5;ENST00000452125.5;ENST00000476136.5;ENST00000465279.5;ENST00000496056.5;ENST00000468669.5;ENST00000458466.1</td>
+            <td>13;295;10;24;10;228;33;53;68;193;210;145;217;10;247;33</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 74890842</td>
+            <td> 74890842</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000625377.3;ENST00000650988.1;ENST00000652688.1;ENST00000426587.5;ENST00000622110.5;ENST00000618922.4;ENST00000611766.4;ENST00000622215.1</td>
+            <td>256;284;268;231;439;275;275;275</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td> 82443775</td>
+            <td> 82443775</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000356860.8;ENST00000705962.1;ENST00000423588.1</td>
+            <td>1;399;58</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 24643324</td>
+            <td> 24643324</td>
+            <td>promoter-TSS</td>
+            <td>SRRM1</td>
+            <td>ENST00000466910.5;ENST00000705681.1;ENST00000705682.1;ENST00000468822.5;ENST00000600523.5;ENST00000462710.5;ENST00000374389.8;ENST00000323848.14;ENST00000490543.5;ENST00000479034.5;ENST00000596378.1</td>
+            <td>51;50;50;48;35;30;24;21;18;15;234</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>107169029</td>
+            <td>107169029</td>
+            <td>promoter-TSS</td>
+            <td>HBP1</td>
+            <td>ENST00000468410.5;ENST00000478930.5;ENST00000464009.1;ENST00000222574.9;ENST00000468401.1;ENST00000468116.1;ENST00000497535.5;ENST00000485846.5</td>
+            <td>67;38;28;25;690;737;739;743</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>112451233</td>
+            <td>112451233</td>
+            <td>promoter-TSS</td>
+            <td>IFRD1</td>
+            <td>ENST00000440625.5;ENST00000535603.5</td>
+            <td>824;824</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>244461410</td>
+            <td>244461410</td>
+            <td>promoter-TSS</td>
+            <td>CATSPERE</td>
+            <td>ENST00000366531.7;ENST00000460986.5;ENST00000366533.8;ENST00000478554.5;ENST00000428042.1;ENST00000464170.1</td>
+            <td>38;33;21;5;0;9</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>244834957</td>
+            <td>244834957</td>
+            <td>promoter-TSS</td>
+            <td>COX20</td>
+            <td>ENST00000366528.3;ENST00000391839.6;ENST00000411948.7;ENST00000498262.1;ENST00000666823.1</td>
+            <td>658;698;700;701;53</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>246724420</td>
+            <td>246724420</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000366510.4</td>
+            <td>10</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>149090702</td>
+            <td>149090702</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000491431.2;ENST00000316286.13</td>
+            <td>15;79</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 28093109</td>
+            <td> 28093109</td>
+            <td>promoter-TSS</td>
+            <td>ELP3</td>
+            <td>ENST00000380353.8;ENST00000537665.2;ENST00000523687.5;ENST00000523760.5;ENST00000524103.5;ENST00000518112.5;ENST00000256398.13;ENST00000519261.5;ENST00000521938.5;ENST00000697968.1;ENST00000520288.5;ENST00000521099.1</td>
+            <td>41;41;6;2;2;29;29;30;38;48;112;337</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 67062444</td>
+            <td> 67062444</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000674647.1;ENST00000676113.1;ENST00000357849.9;ENST00000521509.5;ENST00000521386.5;ENST00000518374.5;ENST00000523890.5;ENST00000517406.1</td>
+            <td>26;17;310;107;814;120;414;290</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 76683460</td>
+            <td> 76683460</td>
+            <td>promoter-TSS</td>
+            <td>ZFHX4</td>
+            <td>ENST00000523885.2;ENST00000522961.1;ENST00000666902.3;ENST00000689032.2;ENST00000692896.2;ENST00000669823.2;ENST00000663655.2;ENST00000518143.2;ENST00000522357.2;ENST00000663063.1</td>
+            <td>320;303;9;9;43;42;43;151;174;181</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 81280565</td>
+            <td> 81280565</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000297258.11;ENST00000396359.1</td>
+            <td>28;301</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 91070034</td>
+            <td> 91070034</td>
+            <td>promoter-TSS</td>
+            <td>OTUD6B</td>
+            <td>ENST00000615618.1;ENST00000617869.4;ENST00000285420.8;ENST00000522894.5;ENST00000404789.8;ENST00000524027.5</td>
+            <td>161;161;161;290;309;327</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 95270056</td>
+            <td> 95270056</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000286688.6</td>
+            <td>854</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>  3900554</td>
+            <td>  3900554</td>
+            <td>promoter-TSS</td>
+            <td>C1orf174</td>
+            <td>ENST00000486765.5;ENST00000474140.1;ENST00000361605.4;ENST00000680169.1;ENST00000679946.1;ENST00000681823.1;ENST00000680279.1;ENST00000680054.1;ENST00000679703.1;ENST00000680535.1;ENST00000679929.1</td>
+            <td>306;260;281;332;302;295;293;281;275;295;300</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td>123396409</td>
+            <td>123396409</td>
+            <td>promoter-TSS</td>
+            <td>ATAD2</td>
+            <td>ENST00000517666.5;ENST00000287394.10;ENST00000519124.5;ENST00000521496.5</td>
+            <td>24;37;29;7</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td>124450372</td>
+            <td>124450372</td>
+            <td>promoter-TSS</td>
+            <td>TRMT12</td>
+            <td>ENST00000328599.4;ENST00000521443.1;ENST00000522518.1</td>
+            <td>447;447;544</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 12069014</td>
+            <td> 12069014</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000263035.9;ENST00000437298.1</td>
+            <td>59;9</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td>144078703</td>
+            <td>144078703</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000703645.1;ENST00000703646.1;ENST00000525936.1;ENST00000316052.6;ENST00000527954.1</td>
+            <td>60;60;54;30;719</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td>144358448</td>
+            <td>144358448</td>
+            <td>promoter-TSS</td>
+            <td>SLC52A2</td>
+            <td>ENST00000530047.5;ENST00000527078.6;ENST00000674870.1;ENST00000526338.7;ENST00000402965.5;ENST00000329994.7;ENST00000526752.3;ENST00000533662.2;ENST00000534725.6;ENST00000674929.1;ENST00000675597.1;ENST00000643944.2;ENST00000675121.1;ENST00000676358.1;ENST00000675280.1;ENST00000526891.2;ENST00000526779.3;ENST00000674779.1;ENST00000674821.1;ENST00000675787.1;ENST00000676094.1;ENST00000524492.5;ENST00000331890.6;ENST00000455319.6;ENST00000529279.1;ENST00000530687.1</td>
+            <td>108;116;121;128;132;144;145;146;146;155;157;164;175;179;274;541;563;739;739;739;739;474;23;23;521;267</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td>  6645890</td>
+            <td>  6645890</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000413145.3;ENST00000688297.2;ENST00000701914.1;ENST00000701696.1;ENST00000701192.1;ENST00000687289.1;ENST00000701372.1;ENST00000321612.8</td>
+            <td>77;61;27;17;15;14;9;160</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 19380226</td>
+            <td> 19380226</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000380394.9;ENST00000380384.5;ENST00000315377.4;ENST00000380381.3</td>
+            <td>9;19;27;9</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 20622443</td>
+            <td> 20622443</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000380338.9;ENST00000630269.2;ENST00000475957.1</td>
+            <td>55;569;2</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 37486000</td>
+            <td> 37486000</td>
+            <td>promoter-TSS</td>
+            <td>POLR1E</td>
+            <td>ENST00000442009.6;ENST00000377798.9;ENST00000377792.3</td>
+            <td>51;51;152</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 83980615</td>
+            <td> 83980615</td>
+            <td>promoter-TSS</td>
+            <td>RMI1</td>
+            <td>ENST00000325875.7;ENST00000445877.6;ENST00000704004.1;ENST00000376263.8;ENST00000376281.8;ENST00000704005.1;ENST00000704006.1;ENST00000704051.1;ENST00000704007.1;ENST00000704008.1;ENST00000704009.1;ENST00000704010.1;ENST00000704011.1;ENST00000704052.1;ENST00000704053.1;ENST00000704012.1;ENST00000704013.1;ENST00000360384.9;ENST00000704054.1;ENST00000704055.1;ENST00000704056.1;ENST00000472778.6;ENST00000704057.1;ENST00000704058.1;ENST00000457156.6;ENST00000704059.1;ENST00000704015.1;ENST00000704016.1;ENST00000704060.1;ENST00000483135.1</td>
+            <td>182;189;420;399;10;4;393;659;420;0;0;0;429;368;608;14;399;364;0;395;0;0;993;993;368;633;15;11;0;19</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 86282513</td>
+            <td> 86282513</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000375991.9;ENST00000311534.6;ENST00000326094.4</td>
+            <td>24;404;24</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td>110256505</td>
+            <td>110256505</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000374517.6;ENST00000374515.9</td>
+            <td>1;38</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 26787071</td>
+            <td> 26787071</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000455364.2;ENST00000686194.1;ENST00000674335.1;ENST00000686655.1;ENST00000693629.1;ENST00000688730.1;ENST00000688522.1;ENST00000674202.1;ENST00000691454.1;ENST00000689130.1;ENST00000472757.5;ENST00000686422.1;ENST00000686325.1;ENST00000687468.1;ENST00000674222.1;ENST00000691135.1</td>
+            <td>16;573;603;872;872;876;878;878;880;886;892;895;895;895;895;906</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td>128657057</td>
+            <td>128657057</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000372715.7;ENST00000419989.2;ENST00000451652.5;ENST00000480613.6</td>
+            <td>209;375;357;375</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 16870762</td>
+            <td> 16870762</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000380087.7;ENST00000380084.8;ENST00000404022.5;ENST00000468092.1;ENST00000493145.1</td>
+            <td>399;875;400;417;608</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 26860947</td>
+            <td> 26860947</td>
+            <td>promoter-TSS</td>
+            <td>ABI1</td>
+            <td>ENST00000376170.8;ENST00000359188.8;ENST00000376142.6;ENST00000376139.6;ENST00000376160.5;ENST00000376166.5;ENST00000376138.7;ENST00000376140.4;ENST00000346832.10</td>
+            <td>54;11;11;23;25;38;82;10;38</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 47145278</td>
+            <td> 47145278</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000377604.8;ENST00000345781.10;ENST00000628161.2;ENST00000329236.8;ENST00000690204.1;ENST00000690053.1;ENST00000377811.4;ENST00000692649.1;ENST00000276062.9;ENST00000688286.1</td>
+            <td>56;0;0;168;899;589;575;570;567;575</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 49123944</td>
+            <td> 49123944</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000156109.7</td>
+            <td>208</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 72572770</td>
+            <td> 72572770</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000647613.1;ENST00000648922.1;ENST00000373573.9;ENST00000649097.1;ENST00000648452.1;ENST00000648855.1;ENST00000647886.1;ENST00000648504.1;ENST00000648939.1;ENST00000647654.1;ENST00000647859.1;ENST00000647980.1;ENST00000647594.1;ENST00000648731.1;ENST00000649181.1;ENST00000649274.1;ENST00000650471.1;ENST00000647641.1;ENST00000649543.1;ENST00000373568.7;ENST00000648139.1;ENST00000648834.1;ENST00000648711.1;ENST00000436675.6;ENST00000415409.6;ENST00000478743.2;ENST00000648298.1;ENST00000648870.1;ENST00000649116.1;ENST00000649752.1;ENST00000647718.1;ENST00000649242.1;ENST00000649518.1;ENST00000648285.1;ENST00000412342.6;ENST00000373571.6;ENST00000648962.1;ENST00000648036.1;ENST00000650126.1;ENST00000647974.1;ENST00000373560.7;ENST00000373559.8;ENST00000648577.1;ENST00000421523.6;ENST00000648101.1;ENST00000650636.1;ENST00000373554.6;ENST00000373556.8;ENST00000486704.1</td>
+            <td>72;72;72;45;94;84;88;71;16;72;72;76;94;88;10;65;72;77;45;71;45;47;110;87;72;76;72;85;72;72;45;45;95;46;7;72;50;39;76;674;59;41;45;38;142;45;82;85;45</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 73851498</td>
+            <td> 73851498</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000434839.3;ENST00000650627.1;ENST00000635841.2</td>
+            <td>404;93;873</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>115969097</td>
+            <td>115969097</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000664453.1;ENST00000688552.1;ENST00000693570.1;ENST00000701608.1;ENST00000692054.1;ENST00000664164.1;ENST00000689580.2;ENST00000430756.2;ENST00000701509.1;ENST00000686602.2</td>
+            <td>74;14;12;14;14;32;44;7;45;50</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 31760484</td>
+            <td> 31760484</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000686267.2</td>
+            <td>337</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>123961571</td>
+            <td>123961571</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000371145.8;ENST00000692982.1;ENST00000691383.1;ENST00000686802.1;ENST00000691035.1;ENST00000371157.7;ENST00000686127.1;ENST00000458176.5;ENST00000371144.7;ENST00000466748.5;ENST00000471107.1;ENST00000428941.5;ENST00000435215.5;ENST00000426367.1</td>
+            <td>134;144;146;146;146;146;153;167;167;203;251;461;522;229</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>130339942</td>
+            <td>130339942</td>
+            <td>promoter-TSS</td>
+            <td>SLC25A14</td>
+            <td>ENST00000543953.5;ENST00000612248.4;ENST00000495156.5;ENST00000464342.5;ENST00000464184.5;ENST00000424447.5;ENST00000545805.6;ENST00000218197.9;ENST00000467496.5;ENST00000339231.3;ENST00000361980.9</td>
+            <td>53;53;41;31;30;28;22;109;191;336;336</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 32347136</td>
+            <td> 32347136</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000417447.1;ENST00000319778.11;ENST00000667706.1;ENST00000263062.8;ENST00000495790.1;ENST00000469059.2;ENST00000480402.1</td>
+            <td>260;21;41;48;316;14;81</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 32379515</td>
+            <td> 32379515</td>
+            <td>promoter-TSS</td>
+            <td>EPC1</td>
+            <td>ENST00000375110.6;ENST00000479380.2;ENST00000462470.1</td>
+            <td>716;830;900</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 27726029</td>
+            <td> 27726029</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000373954.11;ENST00000419687.6;ENST00000530324.5;ENST00000234549.11;ENST00000373949.5;ENST00000010299.10;ENST00000662905.1</td>
+            <td>67;32;0;0;0;27;272</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>150898722</td>
+            <td>150898722</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000370377.8;ENST00000346693.8;ENST00000437787.6;ENST00000613030.4;ENST00000355149.8;ENST00000466436.5;ENST00000491877.1</td>
+            <td>53;91;93;93;95;92;112</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>152733684</td>
+            <td>152733684</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000393869.8;ENST00000357916.8;ENST00000361201.8;ENST00000393900.4;ENST00000370291.6;ENST00000361211.9;ENST00000452779.3;ENST00000370287.7</td>
+            <td>72;94;142;177;6;14;36;50</td>
+          </tr>
+
+          <tr>
+            <td>chrY</td>
+            <td> 11214948</td>
+            <td> 11214948</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000652671.2;ENST00000651211.2;ENST00000687423.1</td>
+            <td>77;83;2</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 59709829</td>
+            <td> 59709829</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000395348.8;ENST00000490066.1</td>
+            <td>20;306</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 61901677</td>
+            <td> 61901677</td>
+            <td>promoter-TSS</td>
+            <td>ARID5B</td>
+            <td>ENST00000644638.1;ENST00000279873.12;ENST00000681100.1</td>
+            <td>6;21;21</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 63133324</td>
+            <td> 63133324</td>
+            <td>promoter-TSS</td>
+            <td>NRBF2</td>
+            <td>ENST00000435510.6;ENST00000277746.11</td>
+            <td>76;3</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 68721226</td>
+            <td> 68721226</td>
+            <td>promoter-TSS</td>
+            <td>CCAR1</td>
+            <td>ENST00000630771.2;ENST00000538031.5;ENST00000543719.5;ENST00000541012.5;ENST00000543229.5;ENST00000539539.5;ENST00000265872.11;ENST00000543225.5;ENST00000536012.5;ENST00000494903.2;ENST00000540210.5</td>
+            <td>81;9;0;0;12;12;12;15;15;25;28</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 70816008</td>
+            <td> 70816008</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000697925.1;ENST00000697928.1;ENST00000697926.1;ENST00000697927.1;ENST00000373202.8;ENST00000697988.1;ENST00000486993.1;ENST00000697990.1;ENST00000697989.1;ENST00000697929.1;ENST00000697930.1;ENST00000697931.1;ENST00000697932.1</td>
+            <td>90;80;79;64;59;47;46;18;14;1;51;295;375</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 74151213</td>
+            <td> 74151213</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000672429.1;ENST00000539909.6;ENST00000286621.7;ENST00000478611.2;ENST00000673352.1;ENST00000355264.9;ENST00000372745.1;ENST00000487653.1</td>
+            <td>10;7;10;21;26;384;370;455</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 78033917</td>
+            <td> 78033917</td>
+            <td>promoter-TSS</td>
+            <td>RPS24</td>
+            <td>ENST00000645440.1;ENST00000478655.6;ENST00000485708.7;ENST00000464716.6;ENST00000360830.9;ENST00000372360.9;ENST00000440692.6;ENST00000645698.1;ENST00000476545.6;ENST00000466129.6;ENST00000465692.2;ENST00000475468.6;ENST00000482069.5;ENST00000646254.1</td>
+            <td>80;53;53;53;53;53;53;42;39;30;25;12;0;292</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 80078638</td>
+            <td> 80078638</td>
+            <td>promoter-TSS</td>
+            <td>TMEM254</td>
+            <td>ENST00000372277.7;ENST00000472622.5;ENST00000613758.4;ENST00000372281.8;ENST00000372275.5;ENST00000372274.5;ENST00000372273.7;ENST00000467529.5;ENST00000463029.5;ENST00000476173.5;ENST00000483732.5</td>
+            <td>7;7;7;26;43;53;397;631;634;656;689</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td>110918911</td>
+            <td>110918911</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000688928.1;ENST00000689997.1;ENST00000689300.1;ENST00000691441.1;ENST00000451838.2;ENST00000692776.1;ENST00000687592.1;ENST00000691903.1;ENST00000685613.1;ENST00000691151.1;ENST00000265277.10;ENST00000489390.1;ENST00000685059.1;ENST00000369452.9;ENST00000691369.1;ENST00000689118.1;ENST00000651766.1;ENST00000652043.1;ENST00000605742.5</td>
+            <td>455;663;664;676;677;679;681;681;681;688;688;691;691;692;695;707;697;253;24</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td>118046935</td>
+            <td>118046935</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000665675.1;ENST00000454781.6;ENST00000454857.6;ENST00000426021.5;ENST00000439517.2;ENST00000355624.8;ENST00000369199.5</td>
+            <td>35;46;46;58;120;5;342</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 35193122</td>
+            <td> 35193122</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000357214.6</td>
+            <td>22</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>   207389</td>
+            <td>   207389</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000526104.6;ENST00000410108.5;ENST00000325147.13;ENST00000382762.8;ENST00000529614.6;ENST00000332865.10;ENST00000486280.1;ENST00000479463.1</td>
+            <td>318;5;6;9;14;32;167;10</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 37595903</td>
+            <td> 37595903</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000641190.1;ENST00000373062.8;ENST00000488496.1</td>
+            <td>222;33;31</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 17207939</td>
+            <td> 17207939</td>
+            <td>promoter-TSS</td>
+            <td>NUCB2</td>
+            <td>ENST00000528644.5;ENST00000531428.1;ENST00000691414.1;ENST00000533645.1;ENST00000532035.1;ENST00000503729.2</td>
+            <td>213;18;46;7;10;43</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 37859588</td>
+            <td> 37859588</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000373036.5</td>
+            <td>3</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 33039515</td>
+            <td> 33039515</td>
+            <td>promoter-TSS</td>
+            <td>TCP11L1</td>
+            <td>ENST00000532687.5;ENST00000530419.5;ENST00000334274.9;ENST00000527661.5;ENST00000530171.5;ENST00000528107.5;ENST00000602733.5;ENST00000432887.5;ENST00000528898.1;ENST00000531632.6</td>
+            <td>97;97;56;56;71;270;286;499;512;515</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 39204831</td>
+            <td> 39204831</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000602528.2</td>
+            <td>16</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 45146643</td>
+            <td> 45146643</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000534751.3;ENST00000683152.1;ENST00000424263.6;ENST00000622142.5</td>
+            <td>3;3;699;699</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 40449964</td>
+            <td> 40449964</td>
+            <td>promoter-TSS</td>
+            <td>ZFP69B</td>
+            <td>ENST00000469416.1;ENST00000484445.5;ENST00000411995.6;ENST00000361584.5;ENST00000642138.1</td>
+            <td>137;142;142;511;74</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 40692068</td>
+            <td> 40692068</td>
+            <td>promoter-TSS</td>
+            <td>NFYC</td>
+            <td>ENST00000534399.5;ENST00000372653.5;ENST00000372669.8;ENST00000606277.2</td>
+            <td>59;54;221;5</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 61392623</td>
+            <td> 61392623</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000334888.10;ENST00000515837.7;ENST00000690736.1;ENST00000544795.6;ENST00000688959.1;ENST00000684926.1;ENST00000541473.1</td>
+            <td>35;35;35;35;9;6;8</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 61967156</td>
+            <td> 61967156</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000623785.2;ENST00000532601.1</td>
+            <td>572;9</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 63671401</td>
+            <td> 63671401</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000398868.8</td>
+            <td>24</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 64240907</td>
+            <td> 64240907</td>
+            <td>promoter-TSS</td>
+            <td>FKBP2</td>
+            <td>ENST00000536642.5;ENST00000541388.1;ENST00000309366.9;ENST00000652762.2;ENST00000449942.6;ENST00000650773.1;ENST00000535135.7;ENST00000652094.1</td>
+            <td>95;166;187;187;248;471;757;757</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 64245931</td>
+            <td> 64245931</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000544553.3;ENST00000663760.3;ENST00000542235.1</td>
+            <td>92;24;114</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 65888475</td>
+            <td> 65888475</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000357519.9;ENST00000338369.6;ENST00000533045.5;ENST00000533037.5;ENST00000532229.1;ENST00000532679.5;ENST00000426652.6;ENST00000528937.1;ENST00000442885.2</td>
+            <td>3;55;38;14;38;13;13;37;34</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 66289118</td>
+            <td> 66289118</td>
+            <td>promoter-TSS</td>
+            <td>YIF1A</td>
+            <td>ENST00000471387.6;ENST00000376901.9;ENST00000359461.10;ENST00000484814.1;ENST00000431556.6;ENST00000528575.1;ENST00000376899.8;ENST00000474986.2;ENST00000534374.1</td>
+            <td>9;24;26;9;110;80;24;18;16</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 67805312</td>
+            <td> 67805312</td>
+            <td>promoter-TSS</td>
+            <td>FAM86C2P</td>
+            <td>ENST00000531806.5;ENST00000529253.5;ENST00000528684.5;ENST00000525180.1</td>
+            <td>9;21;0;23</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 71787542</td>
+            <td> 71787542</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000687021.2;ENST00000346333.11;ENST00000691262.1;ENST00000688029.1;ENST00000686315.1;ENST00000689468.2;ENST00000526393.5;ENST00000686373.1;ENST00000426628.8;ENST00000689903.2;ENST00000359244.9;ENST00000688077.1;ENST00000685880.1;ENST00000687306.1;ENST00000701094.1;ENST00000702272.1;ENST00000686911.1;ENST00000692655.1;ENST00000701597.1;ENST00000528685.2;ENST00000700764.1;ENST00000693723.1;ENST00000510443.6;ENST00000675931.1</td>
+            <td>61;60;60;57;54;49;30;27;27;27;27;21;21;19;19;19;16;13;13;13;13;13;11;4</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 76860931</td>
+            <td> 76860931</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000679754.1;ENST00000534206.5;ENST00000679866.1;ENST00000680842.1;ENST00000681257.1;ENST00000681354.1;ENST00000681732.1;ENST00000680583.1;ENST00000532485.6;ENST00000525194.5;ENST00000681004.1;ENST00000681375.1;ENST00000530182.6;ENST00000525861.5;ENST00000531461.5;ENST00000679611.1;ENST00000681411.1;ENST00000681955.1;ENST00000526597.5;ENST00000679924.1;ENST00000530334.6;ENST00000681251.1;ENST00000533873.1;ENST00000531352.5;ENST00000278544.9</td>
+            <td>71;63;60;57;53;42;34;24;12;6;6;6;3;3;4;5;5;5;7;7;8;8;10;11;18</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 86955380</td>
+            <td> 86955380</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000499504.8;ENST00000662165.1;ENST00000687459.1;ENST00000531827.4;ENST00000688518.1;ENST00000531380.2</td>
+            <td>235;235;686;686;700;14</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>103109579</td>
+            <td>103109579</td>
+            <td>promoter-TSS</td>
+            <td>DYNC2H1</td>
+            <td>ENST00000649323.1;ENST00000334267.11</td>
+            <td>64;56</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 44807317</td>
+            <td> 44807317</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000702618.1;ENST00000339355.3;ENST00000675259.1</td>
+            <td>206;33;33</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>111879528</td>
+            <td>111879528</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000260276.8;ENST00000530214.5;ENST00000530799.5;ENST00000622211.4;ENST00000260257.9;ENST00000531487.1</td>
+            <td>12;13;32;102;362;70</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>112025353</td>
+            <td>112025353</td>
+            <td>promoter-TSS</td>
+            <td>DLAT</td>
+            <td>ENST00000533297.1;ENST00000679614.1;ENST00000679815.1;ENST00000679878.1;ENST00000280346.11;ENST00000679829.1;ENST00000679466.1;ENST00000527231.2;ENST00000680010.1;ENST00000681316.1;ENST00000681328.1;ENST00000681339.1;ENST00000531306.2;ENST00000679368.1;ENST00000681638.1;ENST00000680331.1;ENST00000393051.5;ENST00000680411.1</td>
+            <td>54;54;54;54;54;72;72;72;72;72;72;72;77;77;77;86;86;623</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 45303547</td>
+            <td> 45303547</td>
+            <td>promoter-TSS</td>
+            <td>LINC01144</td>
+            <td>ENST00000626198.1</td>
+            <td>362</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>113314663</td>
+            <td>113314663</td>
+            <td>promoter-TSS</td>
+            <td>TTC12</td>
+            <td>ENST00000429951.5;ENST00000442859.5;ENST00000531164.5;ENST00000529850.5;ENST00000529221.6;ENST00000525965.5;ENST00000464224.5;ENST00000494714.5;ENST00000393020.5;ENST00000455306.5;ENST00000524580.6;ENST00000489064.5;ENST00000526487.6;ENST00000533504.3</td>
+            <td>83;83;79;79;79;71;60;55;147;190;392;400;180;187</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 45584067</td>
+            <td> 45584067</td>
+            <td>promoter-TSS</td>
+            <td>NASP</td>
+            <td>ENST00000537798.5;ENST00000437362.6;ENST00000464190.6;ENST00000350030.8;ENST00000528084.5;ENST00000527359.5;ENST00000530840.5;ENST00000531532.5;ENST00000529333.5;ENST00000527470.5;ENST00000525515.5;ENST00000453748.5;ENST00000528238.5;ENST00000534101.1;ENST00000470768.5;ENST00000372052.8;ENST00000629893.1;ENST00000351223.7;ENST00000685973.1</td>
+            <td>78;77;25;25;24;24;21;21;21;21;21;21;8;6;5;3;1;1;133</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>119018333</td>
+            <td>119018333</td>
+            <td>promoter-TSS</td>
+            <td>TRAPPC4</td>
+            <td>ENST00000527680.1;ENST00000447216.2;ENST00000528230.5;ENST00000525303.5;ENST00000434101.6;ENST00000359005.8;ENST00000531290.5;ENST00000533632.6;ENST00000533058.5;ENST00000525079.5;ENST00000533012.1;ENST00000577421.1;ENST00000532567.5;ENST00000527673.2;ENST00000528547.1</td>
+            <td>429;432;432;432;432;432;432;432;432;456;461;610;2;9;288</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>119102246</td>
+            <td>119102246</td>
+            <td>promoter-TSS</td>
+            <td>C2CD2L</td>
+            <td>ENST00000534024.1;ENST00000682232.1;ENST00000354202.9;ENST00000392834.7;ENST00000481084.5;ENST00000530052.2;ENST00000683567.1;ENST00000682791.1;ENST00000682811.1;ENST00000682946.1;ENST00000683143.1;ENST00000682192.1;ENST00000683373.1;ENST00000684345.1;ENST00000683955.1;ENST00000682652.1;ENST00000683558.1;ENST00000682326.1;ENST00000684682.1;ENST00000684315.1;ENST00000682517.1;ENST00000684499.1;ENST00000684252.1;ENST00000445653.6;ENST00000684255.1;ENST00000684142.1;ENST00000682691.1;ENST00000682191.1;ENST00000414373.5;ENST00000682665.1;ENST00000639704.1;ENST00000640747.1;ENST00000682883.1;ENST00000682404.1;ENST00000640102.1;ENST00000460183.1;ENST00000472016.1</td>
+            <td>47;367;392;367;103;378;719;414;414;414;413;388;388;375;367;149;388;388;388;387;378;378;367;414;382;370;367;388;385;367;408;389;817;378;421;385;392</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td>134069089</td>
+            <td>134069089</td>
+            <td>promoter-TSS</td>
+            <td>JAM3</td>
+            <td>ENST00000532252.5;ENST00000534549.5;ENST00000441717.3;ENST00000299106.9;ENST00000531302.5</td>
+            <td>17;17;17;16;3</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>   752591</td>
+            <td>   752591</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000315939.11;ENST00000340908.9;ENST00000535572.5;ENST00000530271.6;ENST00000537687.5;ENST00000447667.2</td>
+            <td>11;11;1;331;331;464</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>  8242919</td>
+            <td>  8242919</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000669735.1;ENST00000338711.9;ENST00000427893.2</td>
+            <td>227;28;28</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 43806305</td>
+            <td> 43806305</td>
+            <td>promoter-TSS</td>
+            <td>TWF1</td>
+            <td>ENST00000552521.5;ENST00000395510.7;ENST00000547459.5;ENST00000548315.5;ENST00000546662.5;ENST00000550371.1;ENST00000548403.1;ENST00000546506.5;ENST00000547564.1;ENST00000547961.1</td>
+            <td>17;11;42;55;8;22;4;10;22;49</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 45729439</td>
+            <td> 45729439</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000700074.1;ENST00000334344.11;ENST00000427628.5;ENST00000426776.5;ENST00000422737.6;ENST00000687359.1</td>
+            <td>266;266;433;446;476;674</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 48682221</td>
+            <td> 48682221</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000420613.7;ENST00000546701.5;ENST00000550347.5;ENST00000549574.5;ENST00000553086.5;ENST00000547582.5;ENST00000550931.5;ENST00000550870.1;ENST00000548254.1;ENST00000548304.1</td>
+            <td>16;9;3;610;62;804;16;16;14;3</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 48956487</td>
+            <td> 48956487</td>
+            <td>promoter-TSS</td>
+            <td>ARF3</td>
+            <td>ENST00000545855.1;ENST00000472621.1</td>
+            <td>46;4</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 55818122</td>
+            <td> 55818122</td>
+            <td>promoter-TSS</td>
+            <td>ORMDL2</td>
+            <td>ENST00000552672.5;ENST00000243045.10;ENST00000550836.1;ENST00000548974.1;ENST00000546645.1;ENST00000546604.5;ENST00000552884.5;ENST00000336133.8;ENST00000552080.1;ENST00000552207.1</td>
+            <td>80;80;77;207;233;397;399;397;412;401</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 56158383</td>
+            <td> 56158383</td>
+            <td>promoter-TSS</td>
+            <td>MYL6</td>
+            <td>ENST00000548580.5;ENST00000550184.5;ENST00000552297.5;ENST00000293422.9;ENST00000348108.8;ENST00000549017.5;ENST00000547703.5;ENST00000549566.5;ENST00000550697.6;ENST00000536128.5;ENST00000547649.5;ENST00000548725.5;ENST00000547408.5;ENST00000551589.5;ENST00000550639.1;ENST00000546630.1;ENST00000549392.5;ENST00000548400.5;ENST00000548293.5;ENST00000548731.1</td>
+            <td>36;33;26;26;26;25;24;24;23;20;20;18;14;13;11;9;0;0;12;162</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 57488095</td>
+            <td> 57488095</td>
+            <td>promoter-TSS</td>
+            <td>MARS</td>
+            <td>ENST00000548674.5;ENST00000550449.5;ENST00000546481.1;ENST00000545888.6;ENST00000547062.5;ENST00000548714.5;ENST00000551842.5;ENST00000553162.5;ENST00000547501.5;ENST00000551431.5;ENST00000549074.5;ENST00000447721.6;ENST00000628866.2;ENST00000262027.10;ENST00000552007.5;ENST00000551892.1;ENST00000630571.2;ENST00000630803.1;ENST00000548146.1;ENST00000553123.1</td>
+            <td>70;38;32;28;26;26;26;26;26;26;26;26;26;26;9;9;3;3;116;590</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 57846717</td>
+            <td> 57846717</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000398073.7;ENST00000548823.1;ENST00000551594.1</td>
+            <td>11;12;172</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 65646446</td>
+            <td> 65646446</td>
+            <td>promoter-TSS</td>
+            <td>PCNPP3</td>
+            <td>ENST00000393579.2</td>
+            <td>15</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 68808175</td>
+            <td> 68808175</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000258149.11;ENST00000393412.7;ENST00000311420.13;ENST00000493419.1;ENST00000393417.8;ENST00000258148.11;ENST00000539479.6;ENST00000393415.7;ENST00000523991.5;ENST00000543323.5;ENST00000393416.7</td>
+            <td>1;15;97;106;207;288;826;841;841;841;848</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 76031588</td>
+            <td> 76031588</td>
+            <td>promoter-TSS</td>
+            <td>PHLDA1</td>
+            <td>ENST00000602540.5</td>
+            <td>15</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 95003697</td>
+            <td> 95003697</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000552205.6;ENST00000684171.1;ENST00000682903.1;ENST00000547157.1;ENST00000551991.5;ENST00000327772.7;ENST00000684558.1;ENST00000547986.5;ENST00000546788.1</td>
+            <td>10;15;16;2;88;0;0;15;50</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>105107775</td>
+            <td>105107775</td>
+            <td>promoter-TSS</td>
+            <td>WASHC4</td>
+            <td>ENST00000311317.8;ENST00000550053.5;ENST00000332180.10;ENST00000620430.5;ENST00000547404.1;ENST00000652515.1;ENST00000550088.1</td>
+            <td>60;59;43;2;10;131;595</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>108561156</td>
+            <td>108561156</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000546815.6;ENST00000651280.1;ENST00000228284.8;ENST00000546728.5;ENST00000431469.6;ENST00000547528.5;ENST00000552221.1</td>
+            <td>16;16;2;4;2;3;11</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>120201094</td>
+            <td>120201094</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000542265.8;ENST00000542314.6;ENST00000693683.1;ENST00000702713.1;ENST00000664264.1;ENST00000667721.2;ENST00000684870.1;ENST00000535200.2;ENST00000693713.1;ENST00000538804.5;ENST00000667017.1;ENST00000539446.6;ENST00000551150.5;ENST00000392514.9;ENST00000313104.9;ENST00000546989.5;ENST00000552461.5;ENST00000549098.5;ENST00000551258.5;ENST00000546990.5;ENST00000547475.5;ENST00000547211.5;ENST00000547173.5;ENST00000548568.5;ENST00000546564.5;ENST00000547191.5;ENST00000550296.5;ENST00000552902.5;ENST00000548495.5;ENST00000550423.5;ENST00000551914.1;ENST00000548551.5;ENST00000549242.1;ENST00000551783.1;ENST00000551336.1</td>
+            <td>179;196;213;213;230;245;247;247;259;261;261;277;4;16;12;15;15;15;2;278;269;261;268;261;229;13;268;4;15;241;273;15;15;8;0</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>121580507</td>
+            <td>121580507</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000541574.1;ENST00000377069.8;ENST00000446152.6;ENST00000539394.5;ENST00000540191.1</td>
+            <td>284;47;862;281;366</td>
+          </tr>
+
+          <tr>
+            <td>chr13</td>
+            <td> 21061541</td>
+            <td> 21061541</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000382592.5</td>
+            <td>44</td>
+          </tr>
+
+          <tr>
+            <td>chr13</td>
+            <td> 94596178</td>
+            <td> 94596178</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000261296.7;ENST00000498294.5</td>
+            <td>25;63</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 20989990</td>
+            <td> 20989990</td>
+            <td>promoter-TSS</td>
+            <td>METTL17</td>
+            <td>ENST00000554949.1;ENST00000555177.5;ENST00000554985.5;ENST00000554588.5;ENST00000382985.8;ENST00000339374.11;ENST00000556670.6;ENST00000555640.6;ENST00000555533.6;ENST00000557701.5;ENST00000556442.1;ENST00000553564.5;ENST00000557550.6;ENST00000554751.5;ENST00000554283.1;ENST00000553441.5;ENST00000553536.5;ENST00000555670.1;ENST00000555902.6;ENST00000555390.6;ENST00000554354.1</td>
+            <td>16;9;9;9;9;9;2;3;3;5;8;11;12;39;41;45;52;57;556;578;585</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 24216065</td>
+            <td> 24216065</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000565988.1;ENST00000528804.1;ENST00000530222.5;ENST00000396833.2;ENST00000288087.12;ENST00000532557.5;ENST00000531553.1;ENST00000525696.5;ENST00000533536.5;ENST00000532742.5;ENST00000528849.1;ENST00000466422.2</td>
+            <td>90;77;27;0;0;187;266;426;67;4;102;5</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 31026378</td>
+            <td> 31026378</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000555417.6;ENST00000355683.9;ENST00000357479.10;ENST00000555358.5</td>
+            <td>264;22;0;58</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 39175254</td>
+            <td> 39175254</td>
+            <td>promoter-TSS</td>
+            <td>PNN</td>
+            <td>ENST00000553331.5;ENST00000556530.1;ENST00000216832.9;ENST00000554117.1</td>
+            <td>70;23;0;27</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 49853994</td>
+            <td> 49853994</td>
+            <td>promoter-TSS</td>
+            <td>RN7SL3</td>
+            <td>ENST00000610674.1</td>
+            <td>79</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 58297911</td>
+            <td> 58297911</td>
+            <td>promoter-TSS</td>
+            <td>ARID4A</td>
+            <td>ENST00000348476.7;ENST00000355431.8;ENST00000395168.7;ENST00000431612.5;ENST00000445108.5</td>
+            <td>592;643;644;647;676</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 64986888</td>
+            <td> 64986888</td>
+            <td>promoter-TSS</td>
+            <td>FNTB</td>
+            <td>ENST00000555372.5;ENST00000246166.3;ENST00000555742.5</td>
+            <td>6;6;326</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 71080999</td>
+            <td> 71080999</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000455406.6;ENST00000654734.1;ENST00000671179.1;ENST00000634641.1;ENST00000627548.2;ENST00000599146.5;ENST00000626344.2;ENST00000630994.2;ENST00000627516.2;ENST00000627902.2;ENST00000630926.2;ENST00000596952.5;ENST00000625896.2;ENST00000663294.1;ENST00000413421.5;ENST00000628635.2;ENST00000626510.2;ENST00000628683.2;ENST00000628797.2;ENST00000628450.2;ENST00000594152.5;ENST00000653422.1;ENST00000583678.6;ENST00000670550.1;ENST00000630885.2;ENST00000628670.2;ENST00000630350.2;ENST00000370920.8;ENST00000254821.10</td>
+            <td>324;324;344;349;350;350;351;351;351;351;351;353;353;353;361;364;364;364;364;364;367;367;367;368;370;373;394;35;11</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 75985795</td>
+            <td> 75985795</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000679083.1;ENST00000314067.11;ENST00000542766.5;ENST00000554026.5;ENST00000555305.5;ENST00000555370.5;ENST00000238628.10;ENST00000556742.1;ENST00000553338.1</td>
+            <td>41;31;24;14;14;12;12;10;0</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 77616737</td>
+            <td> 77616737</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000216484.7</td>
+            <td>99</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 88824644</td>
+            <td> 88824644</td>
+            <td>promoter-TSS</td>
+            <td>TTC8</td>
+            <td>ENST00000553718.1;ENST00000622513.4;ENST00000556567.5;ENST00000380656.7;ENST00000338104.10;ENST00000346301.8;ENST00000354441.10;ENST00000555057.5;ENST00000556651.5;ENST00000554686.5</td>
+            <td>49;19;6;6;11;11;15;27;40;94</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 23039579</td>
+            <td> 23039579</td>
+            <td>promoter-TSS</td>
+            <td>TUBGCP5</td>
+            <td>ENST00000614508.4;ENST00000615383.5;ENST00000620435.4</td>
+            <td>9;9;6</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 25438975</td>
+            <td> 25438975</td>
+            <td>promoter-TSS</td>
+            <td>UBE3A</td>
+            <td>ENST00000638011.1;ENST00000637886.1;ENST00000638155.1;ENST00000635914.1;ENST00000438097.6;ENST00000648336.2;ENST00000630424.2;ENST00000649550.1;ENST00000650110.1;ENST00000428984.6;ENST00000566215.5;ENST00000675177.1;ENST00000675593.1;ENST00000625778.3;ENST00000675000.1;ENST00000626793.2;ENST00000628733.2;ENST00000630907.2;ENST00000675038.1;ENST00000629886.2;ENST00000628267.2;ENST00000629252.2;ENST00000625681.2;ENST00000627018.1</td>
+            <td>49;9;10;29;32;48;280;48;48;450;433;445;23;75;23;403;448;642;18;645;38;6;23;645</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 30991592</td>
+            <td> 30991592</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000665655.1;ENST00000435680.6;ENST00000568604.5;ENST00000567567.5;ENST00000563714.5;ENST00000565728.5;ENST00000564787.1</td>
+            <td>578;35;10;13;176;3;14</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 37097270</td>
+            <td> 37097270</td>
+            <td>promoter-TSS</td>
+            <td>MEIS2</td>
+            <td>ENST00000560617.5;ENST00000560697.5</td>
+            <td>96;763</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 41332913</td>
+            <td> 41332913</td>
+            <td>promoter-TSS</td>
+            <td>NUSAP1</td>
+            <td>ENST00000559046.5;ENST00000450592.6;ENST00000414849.6;ENST00000559596.6;ENST00000558582.5;ENST00000560747.5;ENST00000559659.1;ENST00000560177.5;ENST00000220514.8;ENST00000560640.1</td>
+            <td>57;41;41;31;29;26;13;0;321;425</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 43792354</td>
+            <td> 43792354</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000249786.9;ENST00000486144.1;ENST00000409960.6;ENST00000409646.5;ENST00000445816.5;ENST00000339624.9;ENST00000409291.5;ENST00000409617.6;ENST00000448830.2;ENST00000475927.5;ENST00000402131.5;ENST00000403425.5;ENST00000430901.1;ENST00000409614.1</td>
+            <td>33;23;23;23;16;6;6;0;0;13;13;13;22;484</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 48878096</td>
+            <td> 48878096</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000530028.3;ENST00000560490.1;ENST00000396535.7;ENST00000537958.5;ENST00000557797.5;ENST00000558220.1;ENST00000559289.1</td>
+            <td>37;39;606;41;466;45;814</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 49170278</td>
+            <td> 49170278</td>
+            <td>promoter-TSS</td>
+            <td>GALK2</td>
+            <td>ENST00000396509.6;ENST00000558956.5;ENST00000559208.5;ENST00000560031.6;ENST00000559095.1;ENST00000558145.5;ENST00000560119.5;ENST00000544523.5;ENST00000560138.5;ENST00000559423.5;ENST00000559454.5</td>
+            <td>73;60;53;30;28;17;17;3;4;33;199</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 77978294</td>
+            <td> 77978294</td>
+            <td>promoter-TSS</td>
+            <td>DNAJB4</td>
+            <td>ENST00000487931.1;ENST00000477671.2;ENST00000484662.1</td>
+            <td>880;937;986</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 65869410</td>
+            <td> 65869410</td>
+            <td>promoter-TSS</td>
+            <td>RAB11A</td>
+            <td>ENST00000564910.5;ENST00000566233.5;ENST00000565075.5;ENST00000261890.7;ENST00000569896.1;ENST00000567671.1</td>
+            <td>45;53;80;80;130;602</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 70096783</td>
+            <td> 70096783</td>
+            <td>promoter-TSS</td>
+            <td>TLE3</td>
+            <td>ENST00000560589.5;ENST00000559929.5;ENST00000559048.5;ENST00000560939.5;ENST00000558201.5;ENST00000440567.7;ENST00000557907.5;ENST00000558379.5</td>
+            <td>832;67;178;81;345;30;14;14</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 92900338</td>
+            <td> 92900338</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000700549.1;ENST00000627622.1;ENST00000629346.2;ENST00000628375.2;ENST00000420239.7;ENST00000700550.1;ENST00000700551.1;ENST00000635856.1;ENST00000394196.9;ENST00000625990.3;ENST00000700552.1</td>
+            <td>46;16;13;13;13;13;13;13;13;3;358</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td>  1943215</td>
+            <td>  1943215</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000361871.8;ENST00000473663.1;ENST00000399753.2;ENST00000564908.1</td>
+            <td>15;91;19;15</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td>  2603420</td>
+            <td>  2603420</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000399702.6;ENST00000566272.1;ENST00000567242.1</td>
+            <td>83;0;53</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 18801548</td>
+            <td> 18801548</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000567078.2;ENST00000304414.12;ENST00000563861.5;ENST00000546206.6;ENST00000562819.5;ENST00000562234.2;ENST00000569976.5;ENST00000567969.1;ENST00000566391.1</td>
+            <td>28;0;0;123;0;4;0;3;23</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 20741821</td>
+            <td> 20741821</td>
+            <td>promoter-TSS</td>
+            <td>THUMPD1</td>
+            <td>ENST00000636554.1;ENST00000396083.7;ENST00000565248.1;ENST00000569768.1</td>
+            <td>5;2;17;5</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 29995655</td>
+            <td> 29995655</td>
+            <td>promoter-TSS</td>
+            <td>INO80E</td>
+            <td>ENST00000304516.11;ENST00000620599.4;ENST00000380503.7;ENST00000569957.5;ENST00000563197.6;ENST00000568043.5;ENST00000567254.5;ENST00000567065.5;ENST00000562441.5;ENST00000567705.5;ENST00000567987.5;ENST00000563040.5;ENST00000540562.1;ENST00000279392.8;ENST00000564026.1;ENST00000563680.1;ENST00000565996.1</td>
+            <td>59;554;562;582;585;588;588;590;590;594;595;596;618;37;11;62;46</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 30021436</td>
+            <td> 30021436</td>
+            <td>promoter-TSS</td>
+            <td>DOC2A</td>
+            <td>ENST00000574405.5</td>
+            <td>140</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 30610320</td>
+            <td> 30610320</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000287461.8;ENST00000563304.5;ENST00000564262.1;ENST00000565710.1;ENST00000688509.1</td>
+            <td>68;65;834;491;30</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 58515493</td>
+            <td> 58515493</td>
+            <td>promoter-TSS</td>
+            <td>SETD6</td>
+            <td>ENST00000310682.6;ENST00000394266.8;ENST00000427443.5;ENST00000470003.5;ENST00000492050.5;ENST00000447443.1;ENST00000219315.9;ENST00000468223.1;ENST00000418480.1;ENST00000422445.5;ENST00000467320.1;ENST00000692609.2</td>
+            <td>13;10;2;6;18;19;23;36;53;297;638;28</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 67846903</td>
+            <td> 67846903</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000700610.1;ENST00000568233.6;ENST00000568390.5;ENST00000700611.1;ENST00000700612.1;ENST00000219169.9;ENST00000567105.5;ENST00000700613.1;ENST00000569436.7;ENST00000700614.1;ENST00000700615.1;ENST00000568396.2;ENST00000570026.2;ENST00000565132.5</td>
+            <td>20;0;19;29;29;29;31;31;210;255;291;307;312;79</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 67935947</td>
+            <td> 67935947</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000575231.1;ENST00000573493.1;ENST00000570985.1;ENST00000574576.2</td>
+            <td>69;305;151;37</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 68023210</td>
+            <td> 68023210</td>
+            <td>promoter-TSS</td>
+            <td>DUS2</td>
+            <td>ENST00000358896.10;ENST00000564975.5;ENST00000568099.6;ENST00000567100.5;ENST00000565263.6;ENST00000432752.5;ENST00000569289.5;ENST00000564781.1;ENST00000332395.7</td>
+            <td>42;50;54;73;73;81;112;118;21</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 68823596</td>
+            <td> 68823596</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000563916.1</td>
+            <td>69</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 72008768</td>
+            <td> 72008768</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000219240.9;ENST00000574309.5;ENST00000571288.6;ENST00000576145.1</td>
+            <td>23;0;9;32</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 74985103</td>
+            <td> 74985103</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000262144.11;ENST00000616369.4;ENST00000536050.5;ENST00000564859.1</td>
+            <td>19;19;276;71</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 75648673</td>
+            <td> 75648673</td>
+            <td>promoter-TSS</td>
+            <td>KARS</td>
+            <td>ENST00000566560.5</td>
+            <td>29</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 90022574</td>
+            <td> 90022574</td>
+            <td>promoter-TSS</td>
+            <td>GAS8</td>
+            <td>ENST00000620723.4;ENST00000565062.5;ENST00000540721.5;ENST00000564853.1;ENST00000268699.9;ENST00000537797.5;ENST00000566266.5</td>
+            <td>25;78;89;95;105;108;108</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td>  2303786</td>
+            <td>  2303786</td>
+            <td>promoter-TSS</td>
+            <td>SRR</td>
+            <td>ENST00000575840.5;ENST00000576620.5;ENST00000576848.1;ENST00000344595.10;ENST00000574987.1;ENST00000263073.11</td>
+            <td>163;163;163;163;167;0</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td>  4143693</td>
+            <td>  4143693</td>
+            <td>promoter-TSS</td>
+            <td>CYB5D2</td>
+            <td>ENST00000573984.1;ENST00000381638.7;ENST00000574474.1</td>
+            <td>8;662;672</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td>  7306918</td>
+            <td>  7306918</td>
+            <td>promoter-TSS</td>
+            <td>EIF5A</td>
+            <td>ENST00000336452.11;ENST00000355068.4;ENST00000576930.5;ENST00000572815.5;ENST00000573542.5;ENST00000336458.13;ENST00000575001.1</td>
+            <td>80;407;621;663;683;709;712</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td>  7583868</td>
+            <td>  7583868</td>
+            <td>promoter-TSS</td>
+            <td>MPDU1</td>
+            <td>ENST00000571822.5;ENST00000396501.8;ENST00000571391.5;ENST00000578267.5;ENST00000585188.5;ENST00000359822.10;ENST00000580708.5;ENST00000580834.5;ENST00000572836.5;ENST00000577088.5;ENST00000250124.11;ENST00000584378.5;ENST00000423172.6;ENST00000576066.5;ENST00000584479.5;ENST00000572719.5;ENST00000579445.5;ENST00000581886.5;ENST00000575256.1;ENST00000570458.5;ENST00000585217.5;ENST00000576272.5;ENST00000581380.1;ENST00000574558.1;ENST00000689751.2;ENST00000690435.2;ENST00000685745.2;ENST00000687005.1;ENST00000689184.1;ENST00000573187.3;ENST00000572046.2</td>
+            <td>46;39;19;19;19;18;15;15;15;15;15;15;14;7;7;7;5;2;1;5;6;16;24;26;125;90;128;125;156;176;125</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td>  8630737</td>
+            <td>  8630737</td>
+            <td>promoter-TSS</td>
+            <td>MYH10</td>
+            <td>ENST00000379980.8;ENST00000269243.8;ENST00000686654.1;ENST00000693441.1;ENST00000685418.1;ENST00000688497.1;ENST00000692526.1;ENST00000360416.8;ENST00000465458.2;ENST00000690895.1;ENST00000692894.1;ENST00000687661.1;ENST00000693704.1;ENST00000411957.2;ENST00000685736.1</td>
+            <td>23;23;960;669;15;42;69;11;83;31;32;31;31;31;32</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 10291813</td>
+            <td> 10291813</td>
+            <td>promoter-TSS</td>
+            <td></td>
+            <td>ENST00000609088.1</td>
+            <td>6</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 28662213</td>
+            <td> 28662213</td>
+            <td>promoter-TSS</td>
+            <td>SUPT6H</td>
+            <td>ENST00000347486.8;ENST00000314616.11;ENST00000247020.9;ENST00000585749.5;ENST00000592250.5;ENST00000588472.6;ENST00000591903.1;ENST00000587338.1;ENST00000585428.1</td>
+            <td>14;7;306;32;27;80;393;23;296</td>
+          </tr>
+
+        </tbody>
+        <tbody id='TTS' style='display:none;'>
+          <tr>
+            <td>chr1</td>
+            <td> 16896220</td>
+            <td> 16896220</td>
+            <td>TTS</td>
+            <td>RNU1-2</td>
+            <td>ENST00000384278.1</td>
+            <td>239</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 46066905</td>
+            <td> 46066905</td>
+            <td>TTS</td>
+            <td></td>
+            <td>ENST00000412643.1;ENST00000686483.2</td>
+            <td>2985;2966</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>146504030</td>
+            <td>146504030</td>
+            <td>TTS</td>
+            <td></td>
+            <td>ENST00000624849.1</td>
+            <td>2529</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>173524176</td>
+            <td>173524176</td>
+            <td>TTS</td>
+            <td>HAND2</td>
+            <td>ENST00000503024.1</td>
+            <td>4735</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 26249711</td>
+            <td> 26249711</td>
+            <td>TTS</td>
+            <td></td>
+            <td>ENST00000618052.2</td>
+            <td>923</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td> 30647723</td>
+            <td> 30647723</td>
+            <td>TTS</td>
+            <td>ATAT1</td>
+            <td>ENST00000376485.8;ENST00000330083.6;ENST00000468713.5;ENST00000471782.5;ENST00000479562.1</td>
+            <td>20866;20848;20829;20802;5900</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td>136267452</td>
+            <td>136267452</td>
+            <td>TTS</td>
+            <td></td>
+            <td>ENST00000640235.1</td>
+            <td>3526</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 23295165</td>
+            <td> 23295165</td>
+            <td>TTS</td>
+            <td></td>
+            <td>ENST00000452015.9;ENST00000561426.1;ENST00000558058.5</td>
+            <td>7693;1701;6417</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 15444972</td>
+            <td> 15444972</td>
+            <td>TTS</td>
+            <td>RPL9P2</td>
+            <td>ENST00000424673.1</td>
+            <td>1332</td>
+          </tr>
+
+        </tbody>
+        <tbody id='exon' style='display:none;'>
+          <tr>
+            <td>chr1</td>
+            <td> 93848155</td>
+            <td> 93848155</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000565336.1</td>
+            <td>980</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 61412610</td>
+            <td> 61412610</td>
+            <td>exon</td>
+            <td>C17orf82</td>
+            <td>ENST00000623772.1</td>
+            <td>858</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>102514205</td>
+            <td>102514205</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000295269.5</td>
+            <td>40978</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td>186848907</td>
+            <td>186848907</td>
+            <td>exon</td>
+            <td>ZSWIM2</td>
+            <td>ENST00000419862.1</td>
+            <td>300</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 21629491</td>
+            <td> 21629491</td>
+            <td>exon</td>
+            <td>YDJC</td>
+            <td>ENST00000464015.5;ENST00000468686.5;ENST00000473985.1</td>
+            <td>520;539;546</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 15647765</td>
+            <td> 15647765</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000643237.3</td>
+            <td>46019</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>129230861</td>
+            <td>129230861</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000689412.2</td>
+            <td>315</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>181188481</td>
+            <td>181188481</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000655600.1</td>
+            <td>971</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 33817845</td>
+            <td> 33817845</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000263228.4</td>
+            <td>684</td>
+          </tr>
+
+          <tr>
+            <td>chr13</td>
+            <td> 19864944</td>
+            <td> 19864944</td>
+            <td>exon</td>
+            <td></td>
+            <td>ENST00000620617.2</td>
+            <td>1105</td>
+          </tr>
+
+          <tr>
+            <td>chr15</td>
+            <td> 63044719</td>
+            <td> 63044719</td>
+            <td>exon</td>
+            <td>TPM1</td>
+            <td>ENST00000610733.1</td>
+            <td>2031</td>
+          </tr>
+
+        </tbody>
+        <tbody id='5UTR' style='display:none;'>
+
+        </tbody>
+        <tbody id='3UTR' style='display:none;'>
+
+        </tbody>
+        <tbody id='intron' style='display:none;'>
+          <tr>
+            <td>chr17</td>
+            <td> 31269959</td>
+            <td> 31269959</td>
+            <td>intron</td>
+            <td>NF1</td>
+            <td>ENST00000356175.7;ENST00000696138.1;ENST00000358273.9;ENST00000691014.1;ENST00000579081.5;ENST00000456735.6;ENST00000493220.5;ENST00000687863.1;ENST00000696140.1;ENST00000696141.1;ENST00000581113.7</td>
+            <td>175031;175031;174981;174981;174750;69422;44875;34763;23614;20840;11575</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 40098973</td>
+            <td> 40098973</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000246672.4</td>
+            <td>1615</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 80261573</td>
+            <td> 80261573</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000582970.6;ENST00000508628.6;ENST00000319921.4</td>
+            <td>720;706;702</td>
+          </tr>
+
+          <tr>
+            <td>chr18</td>
+            <td> 42114545</td>
+            <td> 42114545</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000665793.1</td>
+            <td>992</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 54533190</td>
+            <td> 54533190</td>
+            <td>intron</td>
+            <td>SPTBN1</td>
+            <td>ENST00000615901.4;ENST00000356805.9;ENST00000389980.7;ENST00000433475.1</td>
+            <td>76872;76862;75928;7506</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 96336109</td>
+            <td> 96336109</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000240423.9;ENST00000427946.5;ENST00000477409.1;ENST00000435975.5;ENST00000456906.5;ENST00000455200.5</td>
+            <td>342;312;307;307;301;290</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>167222276</td>
+            <td>167222276</td>
+            <td>intron</td>
+            <td>POU2F1</td>
+            <td>ENST00000559038.5;ENST00000557909.5;ENST00000367866.7;ENST00000271411.8;ENST00000442313.5;ENST00000560232.6;ENST00000429375.6;ENST00000492850.5;ENST00000367865.5;ENST00000541643.7</td>
+            <td>1399;1389;1389;1385;1384;1384;1384;1380;1380;1377</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 42444269</td>
+            <td> 42444269</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000428765.1</td>
+            <td>6245</td>
+          </tr>
+
+          <tr>
+            <td>chr22</td>
+            <td> 46072851</td>
+            <td> 46072851</td>
+            <td>intron</td>
+            <td>MIRLET7BHG</td>
+            <td>ENST00000381051.6;ENST00000691934.2</td>
+            <td>18981;561</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 52670802</td>
+            <td> 52670802</td>
+            <td>intron</td>
+            <td>PBRM1</td>
+            <td>ENST00000356770.8;ENST00000707071.1;ENST00000394830.7;ENST00000296302.11;ENST00000337303.8;ENST00000412587.5;ENST00000409057.5;ENST00000410007.5;ENST00000409114.7;ENST00000409767.5;ENST00000423351.5;ENST00000446103.5;ENST00000431678.5;ENST00000420148.5;ENST00000449505.5;ENST00000450271.5</td>
+            <td>8911;15110;15033;8910;8911;8911;8911;8911;8911;8911;8911;7764;15047;15114;14779;15047</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td> 78058779</td>
+            <td> 78058779</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000508900.2;ENST00000684159.1;ENST00000682513.1;ENST00000512123.4;ENST00000502446.6;ENST00000325942.11;ENST00000508909.5;ENST00000683711.1</td>
+            <td>1455;1455;1455;1455;1208;1208;1174;1088</td>
+          </tr>
+
+          <tr>
+            <td>chr4</td>
+            <td>153234121</td>
+            <td>153234121</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000676423.1;ENST00000675745.1;ENST00000676348.1;ENST00000676408.1;ENST00000674874.1;ENST00000675518.1;ENST00000675315.1;ENST00000676458.1;ENST00000675782.1;ENST00000437508.7;ENST00000674680.1;ENST00000675838.1;ENST00000441616.6;ENST00000632856.2;ENST00000433687.2;ENST00000675623.1;ENST00000674787.1;ENST00000460908.2;ENST00000494872.6;ENST00000675862.1;ENST00000676169.1;ENST00000674718.1;ENST00000675239.1;ENST00000675411.1;ENST00000675627.1;ENST00000675780.1;ENST00000676029.1;ENST00000676305.1;ENST00000674976.1;ENST00000338700.10;ENST00000675293.1;ENST00000676172.1;ENST00000674967.1;ENST00000675136.1;ENST00000675492.1;ENST00000675673.1;ENST00000675744.1;ENST00000479711.6;ENST00000675063.1;ENST00000675340.1;ENST00000675384.1;ENST00000675425.1;ENST00000675835.1;ENST00000675054.1;ENST00000676158.1;ENST00000676224.1;ENST00000674786.1;ENST00000675710.1;ENST00000502281.3;ENST00000675363.1;ENST00000674876.1;ENST00000675159.1;ENST00000675079.1;ENST00000675871.1;ENST00000675049.1;ENST00000675899.1;ENST00000674872.1;ENST00000675343.1;ENST00000675611.1;ENST00000676033.1;ENST00000676220.1;ENST00000676167.1;ENST00000676335.1;ENST00000675146.1</td>
+            <td>81957;81839;81784;81782;81692;81685;81627;81097;81042;81002;29678;29678;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29677;29676;29676;29676;29675;29674;29674;29674;29674;29674;29674;29669;29666;29659;29657;29657;29656;29651;29013;28972;12061;11813;11813;11813;11813;11813;11813;11813;11813;11774;11718;11640</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 83473532</td>
+            <td> 83473532</td>
+            <td>intron</td>
+            <td>VCAN</td>
+            <td>ENST00000503923.1;ENST00000342785.8;ENST00000343200.9;ENST00000265077.8;ENST00000512590.6;ENST00000513960.5;ENST00000513984.5;ENST00000502527.2</td>
+            <td>1913;1857;1857;1787;1767;1754;1740;1606</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td> 87121445</td>
+            <td> 87121445</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000503349.1;ENST00000515750.1;ENST00000662995.1;ENST00000666497.1</td>
+            <td>154123;1296;16951;701</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>149320947</td>
+            <td>149320947</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000296721.9;ENST00000515000.1;ENST00000513665.1</td>
+            <td>49087;49027;5306</td>
+          </tr>
+
+          <tr>
+            <td>chr5</td>
+            <td>154214716</td>
+            <td>154214716</td>
+            <td>intron</td>
+            <td>MFAP3</td>
+            <td>ENST00000519325.1;ENST00000425427.6;ENST00000297107.11;ENST00000520647.5;ENST00000521786.5;ENST00000377661.2;ENST00000521781.5</td>
+            <td>117692;23985;23982;23980;23967;23941;23718</td>
+          </tr>
+
+          <tr>
+            <td>chr6</td>
+            <td>129679939</td>
+            <td>129679939</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000368149.3</td>
+            <td>30237</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>111835244</td>
+            <td>111835244</td>
+            <td>intron</td>
+            <td>DOCK4</td>
+            <td>ENST00000423057.6;ENST00000428084.6;ENST00000437633.6;ENST00000445943.5</td>
+            <td>41883;371154;371154;168886</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>116317321</td>
+            <td>116317321</td>
+            <td>intron</td>
+            <td>CAV2</td>
+            <td>ENST00000490906.5;ENST00000460222.5;ENST00000477018.5;ENST00000467035.5;ENST00000472470.5;ENST00000484871.5;ENST00000485561.5;ENST00000498493.5;ENST00000478226.5;ENST00000462876.5;ENST00000465451.1;ENST00000444244.1;ENST00000446355.2</td>
+            <td>29940;29456;29247;29247;29247;29247;29247;27443;27442;27442;27407;10574;182143</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>130356233</td>
+            <td>130356233</td>
+            <td>intron</td>
+            <td>CPA5</td>
+            <td>ENST00000463587.5;ENST00000461828.5;ENST00000474905.6;ENST00000495736.1;ENST00000466363.6;ENST00000485477.5;ENST00000431780.6;ENST00000393213.7</td>
+            <td>11416;11416;11416;11416;11406;11385;11378;9746</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td>  3249085</td>
+            <td>  3249085</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000669318.1;ENST00000655354.1;ENST00000417149.2;ENST00000665182.1</td>
+            <td>9811;8498;8846;8498</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 73628897</td>
+            <td> 73628897</td>
+            <td>intron</td>
+            <td>STAU2</td>
+            <td>ENST00000522695.5;ENST00000524300.6;ENST00000523558.5;ENST00000521210.5;ENST00000355780.9;ENST00000519961.5;ENST00000521727.5;ENST00000521451.5;ENST00000522509.5;ENST00000517542.5;ENST00000518981.5;ENST00000518767.5;ENST00000518502.5;ENST00000521293.5;ENST00000521447.5</td>
+            <td>109429;117942;117942;117942;117942;109446;118799;117986;118810;117981;118573;118568;118005;117942;117951</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td>  6275417</td>
+            <td>  6275417</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000659311.1;ENST00000689295.1</td>
+            <td>4247;4228</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 90676299</td>
+            <td> 90676299</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000667296.1;ENST00000519519.5;ENST00000521852.5</td>
+            <td>454801;115331;115332</td>
+          </tr>
+
+          <tr>
+            <td>chr9</td>
+            <td> 33524829</td>
+            <td> 33524829</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000684830.1;ENST00000290943.10</td>
+            <td>577;434</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 26744274</td>
+            <td> 26744274</td>
+            <td>intron</td>
+            <td>ARID1A</td>
+            <td>ENST00000430799.7;ENST00000324856.13;ENST00000457599.6;ENST00000374152.7;ENST00000636219.1</td>
+            <td>51037;48258;47869;15361;14616</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>131729585</td>
+            <td>131729585</td>
+            <td>intron</td>
+            <td>FIRRE</td>
+            <td>ENST00000649541.1;ENST00000662867.1;ENST00000663405.1;ENST00000665076.1;ENST00000637577.2;ENST00000654978.1;ENST00000647966.1;ENST00000649391.1;ENST00000648028.2;ENST00000427391.2</td>
+            <td>101018;55676;101051;101034;66223;101057;88820;55676;64556;101057</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td>134669867</td>
+            <td>134669867</td>
+            <td>intron</td>
+            <td>PLAC1</td>
+            <td>ENST00000476971.5;ENST00000473897.1;ENST00000466797.1</td>
+            <td>63768;94395;94454</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 73999273</td>
+            <td> 73999273</td>
+            <td>intron</td>
+            <td>VCL</td>
+            <td>ENST00000623461.3;ENST00000624354.3;ENST00000372755.7;ENST00000478896.2;ENST00000211998.10</td>
+            <td>4079;1158;1158;1156;1156</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 77112091</td>
+            <td> 77112091</td>
+            <td>intron</td>
+            <td>KCNMA1</td>
+            <td>ENST00000604624.6;ENST00000707137.1;ENST00000639601.1;ENST00000638991.1;ENST00000639913.1;ENST00000639205.1;ENST00000639486.1;ENST00000639498.1;ENST00000640523.1;ENST00000372443.6;ENST00000638223.1;ENST00000639344.1;ENST00000638848.1;ENST00000639090.1;ENST00000639489.1;ENST00000639069.1;ENST00000372408.7;ENST00000639995.1;ENST00000639483.1;ENST00000639691.1;ENST00000372421.10;ENST00000640570.1;ENST00000372437.6;ENST00000638895.1;ENST00000457953.6;ENST00000372440.6;ENST00000404771.8;ENST00000638203.1;ENST00000638306.1;ENST00000638351.1;ENST00000638606.1;ENST00000639591.1;ENST00000640182.1;ENST00000640605.1;ENST00000639968.1;ENST00000372403.9;ENST00000640626.1;ENST00000639851.1;ENST00000404857.6;ENST00000638252.1;ENST00000640029.1;ENST00000640093.1;ENST00000640934.1;ENST00000639544.1;ENST00000640807.1;ENST00000434208.6;ENST00000286627.10;ENST00000354353.9;ENST00000406533.7;ENST00000286628.14;ENST00000638283.1;ENST00000639730.1;ENST00000639370.1;ENST00000640141.1;ENST00000638754.1;ENST00000638632.1;ENST00000640969.1;ENST00000638751.1;ENST00000639406.1;ENST00000639823.1;ENST00000640834.1;ENST00000626620.3;ENST00000638575.1;ENST00000638759.1;ENST00000638999.1;ENST00000638514.1;ENST00000640353.1;ENST00000640773.1;ENST00000707138.1;ENST00000637862.2;ENST00000638249.1;ENST00000640386.1;ENST00000638506.1;ENST00000639120.1</td>
+            <td>291892;291933;525666;525727;525727;525355;525901;525355;526023;526277;525550;525402;525630;525683;525683;197551;525355;525370;525855;71387;525471;197529;525361;525506;525674;525683;525683;525683;525683;525683;525683;525683;525683;525683;525683;525355;525355;238669;525355;525355;525355;525355;525355;525550;525550;525550;525810;291933;291933;525716;291931;72783;525476;525683;291931;291821;525714;291931;525630;525355;525646;525550;525550;525550;8928;525668;291929;525476;72818;28676;525243;291931;525391;525639</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>  1662030</td>
+            <td>  1662030</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000700819.1</td>
+            <td>7094</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 65640722</td>
+            <td> 65640722</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000662138.1;ENST00000537250.5;ENST00000535315.5;ENST00000539653.5;ENST00000546198.5;ENST00000537298.5;ENST00000544557.1</td>
+            <td>18448;1475;1434;1639;1419;1437;1649</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 75659024</td>
+            <td> 75659024</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000651075.1;ENST00000552856.1</td>
+            <td>9828;324990</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 54950871</td>
+            <td> 54950871</td>
+            <td>intron</td>
+            <td></td>
+            <td>ENST00000689429.1</td>
+            <td>64058</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>122422209</td>
+            <td>122422209</td>
+            <td>intron</td>
+            <td>CLIP1</td>
+            <td>ENST00000361654.8;ENST00000358808.6;ENST00000620786.5;ENST00000537178.5;ENST00000539080.1</td>
+            <td>378;359;459;422;402</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td>124441596</td>
+            <td>124441596</td>
+            <td>intron</td>
+            <td>NCOR2</td>
+            <td>ENST00000404621.5;ENST00000405201.6;ENST00000429285.6;ENST00000458234.5;ENST00000420698.5;ENST00000542927.5;ENST00000448008.1</td>
+            <td>94006;126015;94006;125867;76697;42177;42172</td>
+          </tr>
+
+          <tr>
+            <td>chr14</td>
+            <td> 60654443</td>
+            <td> 60654443</td>
+            <td>intron</td>
+            <td>SIX1</td>
+            <td>ENST00000554986.2</td>
+            <td>3815</td>
+          </tr>
+
+        </tbody>
+        <tbody id='intergenic' style='display:none;'>
+          <tr>
+            <td>chr17</td>
+            <td> 50290324</td>
+            <td> 50290325</td>
+            <td>intergenic</td>
+            <td>TMEM92-AS1</td>
+            <td>ENST00000508851.1</td>
+            <td>2469</td>
+          </tr>
+
+          <tr>
+            <td>chr17</td>
+            <td> 78936187</td>
+            <td> 78936188</td>
+            <td>intergenic</td>
+            <td>TIMP2</td>
+            <td>ENST00000262768.11</td>
+            <td>10800</td>
+          </tr>
+
+          <tr>
+            <td>chr19</td>
+            <td> 13851274</td>
+            <td> 13851275</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000587762.2</td>
+            <td>8346</td>
+          </tr>
+
+          <tr>
+            <td>chr2</td>
+            <td> 84919996</td>
+            <td> 84919997</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000449856.1</td>
+            <td>4128</td>
+          </tr>
+
+          <tr>
+            <td>chr21</td>
+            <td>  6369312</td>
+            <td>  6369313</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000615262.1</td>
+            <td>3357</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 14216563</td>
+            <td> 14216564</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000306024.4</td>
+            <td>37746</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td> 57952338</td>
+            <td> 57952339</td>
+            <td>intergenic</td>
+            <td>PPIAP16</td>
+            <td>ENST00000462517.1</td>
+            <td>10520</td>
+          </tr>
+
+          <tr>
+            <td>chr3</td>
+            <td>153043249</td>
+            <td>153043250</td>
+            <td>intergenic</td>
+            <td>HMGN2P13</td>
+            <td>ENST00000476476.1</td>
+            <td>24027</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>203534755</td>
+            <td>203534756</td>
+            <td>intergenic</td>
+            <td>OPTC</td>
+            <td>ENST00000448911.1</td>
+            <td>38785</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td>219518767</td>
+            <td>219518768</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000458443.1</td>
+            <td>38423</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>  2400288</td>
+            <td>  2400289</td>
+            <td>intergenic</td>
+            <td>CHST12;CHST12</td>
+            <td>ENST00000258711.7</td>
+            <td>3298</td>
+          </tr>
+
+          <tr>
+            <td>chr7</td>
+            <td>101182756</td>
+            <td>101182757</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000300303.7</td>
+            <td>2463</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td>  4247298</td>
+            <td>  4247299</td>
+            <td>intergenic</td>
+            <td>LINC00702</td>
+            <td>ENST00000608792.1</td>
+            <td>3386</td>
+          </tr>
+
+          <tr>
+            <td>chr8</td>
+            <td> 59530154</td>
+            <td> 59530155</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000524110.1</td>
+            <td>27699</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 14936751</td>
+            <td> 14936752</td>
+            <td>intergenic</td>
+            <td>MOSPD2</td>
+            <td>ENST00000460386.1</td>
+            <td>27829</td>
+          </tr>
+
+          <tr>
+            <td>chrX</td>
+            <td> 55594066</td>
+            <td> 55594067</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000448334.1</td>
+            <td>6038</td>
+          </tr>
+
+          <tr>
+            <td>chr10</td>
+            <td> 91758781</td>
+            <td> 91758782</td>
+            <td>intergenic</td>
+            <td>FAF2P1</td>
+            <td>ENST00000429974.1</td>
+            <td>8413</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 35202302</td>
+            <td> 35202303</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000364998.1</td>
+            <td>6333</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 27934277</td>
+            <td> 27934278</td>
+            <td>intergenic</td>
+            <td>HSP90AA2P</td>
+            <td>ENST00000530115.1</td>
+            <td>43244</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 86116562</td>
+            <td> 86116563</td>
+            <td>intergenic</td>
+            <td>RNU6-560P</td>
+            <td>ENST00000364007.1</td>
+            <td>36663</td>
+          </tr>
+
+          <tr>
+            <td>chr11</td>
+            <td> 93000730</td>
+            <td> 93000731</td>
+            <td>intergenic</td>
+            <td>MTNR1B</td>
+            <td>ENST00000528076.1</td>
+            <td>30946</td>
+          </tr>
+
+          <tr>
+            <td>chr1</td>
+            <td> 45767189</td>
+            <td> 45767190</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000463059.1</td>
+            <td>14086</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 77122391</td>
+            <td> 77122392</td>
+            <td>intergenic</td>
+            <td></td>
+            <td>ENST00000667988.1</td>
+            <td>6785</td>
+          </tr>
+
+          <tr>
+            <td>chr12</td>
+            <td> 79983619</td>
+            <td> 79983620</td>
+            <td>intergenic</td>
+            <td>SNRPGP20</td>
+            <td>ENST00000604477.1</td>
+            <td>5597</td>
+          </tr>
+
+          <tr>
+            <td>chr16</td>
+            <td> 56985731</td>
+            <td> 56985732</td>
+            <td>intergenic</td>
+            <td>NLRC5</td>
+            <td>ENST00000539881.5</td>
+            <td>3752</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<hr align='center' style='width: 80%'>
+<script>
+$(function() {
+  var donutData = genData();
+  var donuts = new DonutCharts();
+  donuts.create(donutData);
+});
+function DonutCharts() {
+  var charts = d3.select('#donut-charts');
+  var legendWidth = 100;
+  var width = 200;
+  var height = 320;
+  var legendRectSize = 20;
+  var legendSpacing = 4;
+  var chart_m,
+      chart_r,
+      color = d3.scale.category10();
+  var getCatNames = function(dataset) {
+    var catNames = new Array();
+    for (var i = 0; i < dataset[0].data.length; i++) {
+      catNames.push(dataset[0].data[i].cat);
+    }
+    return catNames;
+  }
+  var createLegend = function(catNames) {
+    var legends = charts.select('.legend')
+                        .selectAll('g')
+                        .data(catNames)
+                        .enter().append('g')
+                        .attr('transform', function(d, i) {
+                          var height = legendRectSize + legendSpacing;
+                          var offset =  height * color.domain().length / 4;
+                          var vert = i * height - offset;
+                          return 'translate(' + width / 2 + ',' + vert + ')';
+                        });
+    legends.append('rect')
+           .attr('width', legendRectSize)
+           .attr('height', legendRectSize)
+           .style('fill', function(d, i) {
+                return color(i);
+           });
+    legends.append('text')
+           .attr('x', legendRectSize + legendSpacing)
+           .attr('y', legendRectSize - legendSpacing)
+           .text(function(d) {
+                return d;
+           });
+  }
+  var createCenter = function(pie) {
+    var eventObj = {
+        'click': function(d, i) {
+          var paths = charts.selectAll('.clicked');
+          pathAnim(paths, 0);
+          paths.classed('clicked', false);
+          resetAllCenterText();
+        }
+    }
+    var donuts = d3.selectAll('.donut');
+    donuts.append("svg:circle")
+          .attr("r", chart_r * 1)
+          .style("fill", "#E7E7E7")
+          .on(eventObj);
+    donuts.append('text')
+          .attr('class', 'center-txt type')
+          .attr('y', chart_r * -0.16)
+          .attr('text-anchor', 'middle')
+          .style('font-weight', 'bold')
+          .text(function(d, i) {
+             return d.type;
+          });
+    donuts.append('text')
+          .attr('class', 'center-txt value')
+          .attr('text-anchor', 'middle');
+    donuts.append('text')
+          .attr('class', 'center-txt percentage')
+          .attr('y', chart_r * 0.16)
+          .attr('text-anchor', 'middle')
+          .style('fill', '#A2A2A2');
+  }
+  var setCenterText = function(thisDonut) {
+    var sum = d3.sum(thisDonut.selectAll('.clicked').data(), function(d) {
+      return d.data.val;
+    });
+    thisDonut.select('.value')
+             .text(function(d) {
+               return (sum)? sum.toFixed(0) + d.unit
+                           : d.total.toFixed(0) + d.unit;
+             });
+    thisDonut.select('.percentage')
+             .text(function(d) {
+               return (sum)? (sum/d.total*100).toFixed(2) + '%'
+                           : '';
+             });
+  }
+  var resetAllCenterText = function() {
+    charts.selectAll('.value')
+          .text(function(d) {
+             return d.total.toFixed(0) + d.unit;
+           });
+    charts.selectAll('.percentage')
+          .text('');
+  }
+  var pathAnim = function(path, dir) {
+    switch(dir) {
+        case 0:
+            path.transition()
+                .duration(1000)
+                .ease('bounce')
+                .attr('d', d3.svg.arc()
+                             .innerRadius(chart_r * 0.3)
+                             .outerRadius(chart_r)
+                );
+            break;
+        case 1:
+            path.transition()
+                .attr('d', d3.svg.arc()
+                             .innerRadius(chart_r * 0.5)
+                             .outerRadius(chart_r *1.15)
+                 );
+            break;
+    }
+  }
+  var updateDonut = function() {
+    var eventObj = {
+        'mouseover': function(d, i, j) {
+            pathAnim(d3.select(this), 1);
+            var thisDonut = charts.select('.type' + j);
+            thisDonut.select('.value').text(function(donut_d) {
+                return d.data.val.toFixed(0) + donut_d.unit;
+            });
+            thisDonut.select('.percentage').text(function(donut_d) {
+                return (d.data.val/donut_d.total*100).toFixed(2) + '%';
+            });
+        },
+        'mouseout': function(d, i, j) {
+            var thisPath = d3.select(this);
+            if (!thisPath.classed('clicked')) {
+                pathAnim(thisPath, 0);
+            }
+            var thisDonut = charts.select('.type' + j);
+            setCenterText(thisDonut);
+        },
+        'click': function(d, i, j) {
+            var thisDonut = charts.select('.type' + j);
+            if (0 === thisDonut.selectAll('.clicked')[0].length) {
+                thisDonut.select('circle').on('click')();
+            }
+            var thisPath = d3.select(this);
+            var clicked = thisPath.classed('clicked');
+            pathAnim(thisPath, ~~(!clicked));
+            thisPath.classed('clicked', !clicked);
+            setCenterText(thisDonut);
+        }
+    };
+    var pie = d3.layout.pie()
+                       .sort(null)
+                       .value(function(d) {
+                            return d.val;
+                        });
+    var arc = d3.svg.arc()
+                    .innerRadius(chart_r * 0.3)
+                    .outerRadius(function() {
+                        return (d3.select(this).classed('clicked'))? chart_r * 1.08
+                                                                   : chart_r;
+                    });
+    var paths = charts.selectAll('.donut')
+                      .selectAll('path')
+                      .data(function(d, i) {
+                        return pie(d.data);
+                      });
+    paths
+        .transition()
+        .duration(1000)
+        .attr('d', arc);
+    paths.enter()
+         .append('svg:path')
+         .attr('d', arc)
+         .style('fill', function(d, i) {
+            return color(i);
+          })
+         .style('stroke', '#FFFFFF')
+         .on(eventObj)
+    paths.exit().remove();
+    resetAllCenterText();
+  }
+  this.create = function(dataset) {
+    var $charts = $('#donut-charts');
+    chart_m = $charts.innerWidth() / dataset.length / 4 * 0.13;
+    chart_r = $charts.innerWidth() / dataset.length / 4 * 0.85;
+    charts.append('svg')
+          .attr('class', 'legend')
+          .attr('width', width+legendWidth)
+          .attr('height', height)
+          .attr('align','center')
+          .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+    var donut = charts.selectAll('.donut')
+                      .data(dataset)
+                      .enter().append('svg:svg')
+                      .attr('width', (chart_r + chart_m) * 2)
+                      .attr('height', (chart_r + chart_m) * 2)
+                      .append('svg:g')
+                      .attr('class', function(d, i) {
+                        return 'donut type' + i;
+                      })
+                      .attr('transform', 'translate(' + (chart_r+chart_m) + ',' + (chart_r+chart_m) + ')');
+    createLegend(getCatNames(dataset));
+    createCenter();
+    updateDonut();
+  }
+  this.update = function(dataset) {
+    var donut = charts.selectAll(".donut")
+                      .data(dataset);
+    updateDonut();
+  }
+}
+function genData() {
+    var type = ['Peaks'];
+    var unit = [''];
+    var cat = ['promoter-TSS', 'TTS', 'exon', '5 UTR', '3 UTR', 'intron', 'intergenic'];
+    var dataset = new Array();
+    for (var i = 0; i < type.length; i++) {
+        var data = new Array();
+        var total = 403
+    data = [
+        {cat: 'promoter-TSS', val: 321},
+        {cat: 'TTS', val: 9},
+        {cat: 'exon', val: 11},
+        {cat: '5 UTR', val: 0},
+        {cat: '3 UTR', val: 0},
+        {cat: 'intron', val: 37},
+        {cat: 'intergenic', val: 25}
+        ];
+    dataset.push({
+        'type': type[i],
+        'unit': unit[i],
+        'data': data,
+        'total': total
+    });
+    }
+    return dataset;
+}
+function changeTermTable(opt){
+  if (opt == 'promoter'){
+    $('#promoter').css('display', '');
+    $('#TTS').css('display', 'none');
+    $('#exon').css('display', 'none');
+    $('#5UTR').css('display', 'none');
+    $('#3UTR').css('display', 'none');
+    $('#intron').css('display', 'none');
+    $('#intergenic').css('display', 'none');
+  }
+  if (opt == 'TTS'){
+    $('#promoter').css('display', 'none');
+    $('#TTS').css('display', '');
+    $('#exon').css('display', 'none');
+    $('#5UTR').css('display', 'none');
+    $('#3UTR').css('display', 'none');
+    $('#intron').css('display', 'none');
+    $('#intergenic').css('display', 'none');
+  }
+  if (opt == 'exon'){
+    $('#promoter').css('display', 'none');
+    $('#TTS').css('display', 'none');
+    $('#exon').css('display', '');
+    $('#5UTR').css('display', 'none');
+    $('#3UTR').css('display', 'none');
+    $('#intron').css('display', 'none');
+    $('#intergenic').css('display', 'none');
+  }
+  if (opt == '5utr'){
+    $('#promoter').css('display', 'none');
+    $('#TTS').css('display', 'none');
+    $('#exon').css('display', 'none');
+    $('#5UTR').css('display', '');
+    $('#3UTR').css('display', 'none');
+    $('#intron').css('display', 'none');
+    $('#intergenic').css('display', 'none');
+  }
+  if (opt == '3utr'){
+    $('#promoter').css('display', 'none');
+    $('#TTS').css('display', 'none');
+    $('#exon').css('display', 'none');
+    $('#5UTR').css('display', 'none');
+    $('#3UTR').css('display', '');
+    $('#intron').css('display', 'none');
+    $('#intergenic').css('display', 'none');
+  }
+  if (opt == 'intron'){
+    $('#promoter').css('display', 'none');
+    $('#TTS').css('display', 'none');
+    $('#exon').css('display', 'none');
+    $('#5UTR').css('display', 'none');
+    $('#3UTR').css('display', 'none');
+    $('#intron').css('display', '');
+    $('#intergenic').css('display', 'none');
+  }
+  if (opt == 'intergenic'){
+    $('#promoter').css('display', 'none');
+    $('#TTS').css('display', 'none');
+    $('#exon').css('display', 'none');
+    $('#5UTR').css('display', 'none');
+    $('#3UTR').css('display', 'none');
+    $('#intron').css('display', 'none');
+    $('#intergenic').css('display', '');
+  }
+}
+function downloadCSV(csv, filename) {
+    var csvFile;
+    var downloadLink;
+    // CSV file
+    csvFile = new Blob([csv], {type: 'text/csv'});
+    // Download link
+    downloadLink = document.createElement('a');
+    // File name
+    downloadLink.download = filename;
+    // Create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    // Hide download link
+    downloadLink.style.display = 'none';
+    // Add the link to DOM
+    document.body.appendChild(downloadLink);
+    // Click download link
+    downloadLink.click();
+}
+function exportTableToCSV(filename) {
+    var csv = [];
+    var rows = document.querySelectorAll('table tr');
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++)
+            row.push(cols[j].innerText);
+        csv.push(row.join(','));
+    }
+    // Download CSV file
+    downloadCSV(csv.join('\n'), filename);
+}
+</script>
+</body>
