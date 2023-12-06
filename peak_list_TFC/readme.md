@@ -1,0 +1,3 @@
+Analyzing ChIP-seq data for YY1 transcription factor peaks in selected cell lines reveals a positively skewed distribution, predominantly in the 8-13 range (figure ---). This pattern suggests common behavior for YY1 in this range. A closer look at YY1 and TAF1 co-binding shows a shift towards a platykurtic distribution (figure ---), indicating a unique interaction between these factors. This change implies a different functional dynamic compared to YY1 acting alone, suggesting a nuanced interplay and complex formation between YY1 and TAF1. The distinct behavior when YY1 and TAF1 co-bind, as opposed to YY1's independent action, highlights a synergistic, complex regulatory mechanism.
+
+![alt text](URL)
