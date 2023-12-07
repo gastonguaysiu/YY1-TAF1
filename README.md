@@ -2,9 +2,6 @@
 
 **transcription factor YY1-TAF1 cobinding analysis**
 
-YY1-TAF1
-transcription factor YY1-TAF1 cobinding analysis
-
 For our study on methylation changes in transcription factor (TF) co-binding, we utilized TFregulomeR, which offers insights into context-dependent and independent peaks between TF pairs. Our methodology involved specific heuristic criteria to guide data collection from DNA methylation matrices and read enrichment scores. We selected 414 human cell lines from TFregulomeR, each requiring ChIP-seq data for a minimum of three different TFs for further analysis. In cell lines with extensive ChIP-seq data, we focused on the top five co-binding partners for each TF.
 
 Our analysis centred on comparing two scenarios: co-binding of TF pairs and individual TF binding excluding co-binding peaks (exclusive TF peaks). This approach enabled us to evaluate changes in methylation status when TFs operate independently versus in tandem. We employed TFregulomeR to obtain methylation data, counting methylated peaks per base pair where TFs bind. 
