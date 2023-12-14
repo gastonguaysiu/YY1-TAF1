@@ -16,4 +16,4 @@ We leveraged various functionalities of TFregulomeR, including data browsing, mo
 To elucidate the biological implications of our findings, we performed Gene Ontology (GO) analysis on genes associated with promoter-TSS sites derived from ChIP-Seq data under the three conditions using TFregulomeR and MethMotif.
 
 
-![git_folder_branches](https://github.com/gastonguaysiu/YY1-TAF1/blob/main/git_dir_tree.png?raw=true)
+![git_folder_branches]()
