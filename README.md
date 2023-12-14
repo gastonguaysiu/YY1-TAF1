@@ -2,10 +2,10 @@
 
 **transcription factor YY1-TAF1 cobinding analysis**
 
-For our study on methylation changes in transcription factor (TF) co-binding, we utilized TFregulomeR, which offers insights into context-dependent and independent peaks between TF pairs. Our methodology involved specific heuristic criteria to guide data collection from DNA methylation matrices and read enrichment scores. We selected 414 human cell lines from TFregulomeR, each requiring ChIP-seq data for a minimum of three different TFs for further analysis. In cell lines with extensive ChIP-seq data, we focused on the top five co-binding partners for each TF.
+For our study on methylation changes in transcription factor (TF) co-binding, we utilized TFregulomeR, which offers insights into context-dependent and independent peaks between TF pairs. Our methodology involved specific heuristic criteria to guide data collection from DNA methylation matrices and read enrichment scores. We selected 414 human cell lines from TFregulomeR, each requiring ChIP-seq data for a minimum of three different TFs for further analysis. In cell lines with extensive ChIP-seq data, we focused on each TF's top five co-binding partners.
 
 Our analysis centred on comparing two scenarios: co-binding of TF pairs and individual TF binding excluding co-binding peaks (exclusive TF peaks). This approach enabled us to evaluate changes in methylation status when TFs operate independently versus in tandem. We employed TFregulomeR to obtain methylation data, counting methylated peaks per base pair where TFs bind. 
-We set specific exclusion criteria for methylated peaks: if a dataset had fewer than 10 total methylated peaks or over 95% of the peaks exhibited low methylation levels (below 10%), we classified it as "unmethylated" for further comparisons.
+We set specific exclusion criteria for methylated peaks. If a dataset had fewer than ten total methylated peaks or over 95% of the peaks exhibited low methylation levels (below 10%), we classified it as "unmethylated" for further comparisons.
 
 The TF pairs and exclusive TF data were organized into matrices, categorized by low, intermediate, and high methylation levels, and aligned with corresponding base pairs within the binding motif. We normalized peak counts for comparison, calculated a pseudo-sum-of-squares difference between the matrices, and summed up these differences for a meaningful comparison between the two scenarios.
 
@@ -16,4 +16,4 @@ We leveraged various functionalities of TFregulomeR, including data browsing, mo
 To elucidate the biological implications of our findings, we performed Gene Ontology (GO) analysis on genes associated with promoter-TSS sites derived from ChIP-Seq data under the three conditions using TFregulomeR and MethMotif.
 
 
-![git_folder_branches](https://github.com/gastonguaysiu/YY1-TAF1/blob/main/git_dir_banches.png?raw=true)
+![git_folder_branches](https://github.com/gastonguaysiu/YY1-TAF1/blob/main/git_dir_branches.png?raw=true)
