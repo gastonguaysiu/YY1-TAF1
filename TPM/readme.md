@@ -10,11 +10,11 @@ The flowchart above illustrates the step-by-step process and tools used for RNA-
 
 **Contents**
 
-Files:
+Folders/Files:
 
- - results.tsv: contains the raw, unprocessed data of each transcription factor pair vs exclusion isolated from the evaluate_all_tissue.R script.
- - results_subset.tsv: is just a cleaner version of the results.tsv file, removing all rows that have 0 difference in methylation between the cobinding motif and exclusive binding motif
- - subset_mean.tsv and subset_z.tsv includes only the pairs of TFs that have a difference in methylation beyond a certain threshold, namely the mean and Z scores, respectively.
+ - ./salmon_out_GM12878/rna_seq_file_info/ the information from running the pipeline bash script contains data on the quality of the reads where the information was downloaded.
+ - ./salmon_out_GM12878/salmon_output_*/quant.sf: this file contains the TPM for each of the ensemble gene and splicing variant
+ - ./salmon_out_H1_hESC/ contains the same files and data as the GM12878 folder, but instead is for the H1-hESC cell line
 
 Scripts:
 
