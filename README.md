@@ -14,3 +14,6 @@ Our statistical analysis pinpointed TF pairs with significant methylation change
 We leveraged various functionalities of TFregulomeR, including data browsing, motif logo visualization (plotLogo), importing peak regions (loadPeaks), extracting motif PWMs and methylation matrices (exportMMPFM), and analyzing interactions between TF cofactors (intersectPeakMatrix, exclusivePeaks). We also considered the Tag fold change for each fragment in our peak information.
 
 To elucidate the biological implications of our findings, we performed Gene Ontology (GO) analysis on genes associated with promoter-TSS sites derived from ChIP-Seq data under the three conditions using TFregulomeR and MethMotif.
+
+
+![git_folder_branches](https://github.com/gastonguaysiu/YY1-TAF1/blob/main/git_dir_banches.png?raw=true)
